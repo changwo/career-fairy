@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 
 
-const Home = (props) => {
+const Home = ({videoReducer:{data}}) => {
 
 
 
@@ -15,8 +15,7 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        authReducer: state.authReducer,
-        errorReducer: state.errorReducer,
+        videoReducer: state.videoReducer,
     };
 };
 
