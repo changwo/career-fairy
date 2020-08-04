@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 
 
 
@@ -12,4 +13,11 @@ const Home = (props) => {
     )
 }
 
-export default Home
+const mapStateToProps = (state) => {
+    return {
+        authReducer: state.authReducer,
+        errorReducer: state.errorReducer,
+    };
+};
+
+export default connect(mapStateToProps)(Home);
