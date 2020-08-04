@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import upload from '../../assets/upload.png'
+import {BaseButton} from "../../style/GlobalButtons";
 
 const Container = styled.div`
   background-color: #00d6ab;
@@ -27,7 +28,9 @@ const BaseInputArea = styled.div`
    padding: 10px;
 `
 
-const Upload = styled.img``
+const Upload = styled.img`
+  cursor: pointer;
+`
 
 const FileInput = styled.input`
   display: none;
@@ -35,11 +38,13 @@ const FileInput = styled.input`
 
 const TopArea = styled(BaseInputArea)`
   margin-top: 10px;
-  
   label {
     color: #999999;
     font-size: 20px;
   }
+`
+const CreateButton = styled(BaseButton)`
+  border: 1px solid white;
 `
 
 const MiddleArea = styled(BaseInputArea)`
@@ -48,11 +53,11 @@ const MiddleArea = styled(BaseInputArea)`
 
 const BottomArea = styled.div`
    height: 100px;
-      width: 100%;
-      padding: 10px;
-      button{
-        
-      }
+   width: 100%;
+   padding: 10px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 
 `
 const BaseInput = styled.input`
@@ -70,8 +75,7 @@ const CompInput = styled(BaseInput)`
 const WishBox = (props) => {
 
 
-
-    return(
+    return (
         <Container>
             <h1>Wish for a Company</h1>
             <TopArea>
@@ -82,8 +86,19 @@ const WishBox = (props) => {
 
             </MiddleArea>
             <BottomArea>
-                <Upload src={upload}/>
-                <FileInput/>
+                <div>
+                    <label htmlFor="logo">
+                        <Upload src={upload}/>
+                    </label>
+                    <FileInput type="file" id="logo"/>
+                </div>
+
+                <div>
+                    <CreateButton>
+                        CREATE<br/>
+                        WISH
+                    </CreateButton>
+                </div>
             </BottomArea>
         </Container>
     )

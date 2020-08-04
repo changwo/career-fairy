@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import styled from "styled-components";
+import {BaseButton} from "../../style/GlobalButtons";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -39,7 +40,9 @@ const LogoDiv = styled.div`
     }
 `
 
-const Login = styled.button`
+
+
+const Login = styled(BaseButton)`
   padding: 10px 20px;
   background-color: #00B995;
   color: white;
