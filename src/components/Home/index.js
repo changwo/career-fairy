@@ -49,9 +49,7 @@ const Login = styled(BaseButton)`
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  
 `
-
 
 const Home = ({videoReducer: {data}}) => {
 

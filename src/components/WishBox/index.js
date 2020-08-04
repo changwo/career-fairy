@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import upload from '../../assets/upload.png'
-import {BaseButton} from "../../style/GlobalButtons";
+import {BaseButton, BaseLabel} from "../../style/GlobalButtons";
 
 const Container = styled.div`
   background-color: #00d6ab;
   color: white;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 10px;
   width: 350px;
@@ -21,7 +22,6 @@ const Container = styled.div`
 `
 const BaseInputArea = styled.div`
    width: 100%;
-   //height: 110px;
    background-color: white;
    border-radius: 5px;
    border: 2px solid #868686;
@@ -36,6 +36,7 @@ const FileInput = styled.input`
   display: none;
 `
 
+
 const TopArea = styled(BaseInputArea)`
   margin-top: 10px;
   label {
@@ -49,7 +50,21 @@ const CreateButton = styled(BaseButton)`
 
 const MiddleArea = styled(BaseInputArea)`
    height: 200px;
+     label {
+    color: #999999;
+    font-size: 20px;
+  }
 `
+
+export const AboutCompany = styled.textarea`
+  border: none;
+  width: 100%;
+  height: 100%;
+    background-color: transparent;
+    resize: none;
+    outline: none
+  
+`;
 
 const BottomArea = styled.div`
    height: 100px;
@@ -58,8 +73,25 @@ const BottomArea = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
-
 `
+
+const LabelDiv = styled.div`
+  height: 58px;
+    padding: 10px 20px;
+  background-color: #00B995;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid white;
+`
+
+const UploadLabel = styled.label`
+font-size: 20px;
+`
+
 const BaseInput = styled.input`
    padding: 10px;
    width: 100%;
@@ -83,20 +115,19 @@ const WishBox = (props) => {
                 <CompInput id="name"/>
             </TopArea>
             <MiddleArea>
-
+                <label htmlFor="name">Why Company name?</label>
+                <AboutCompany rows={15}/>
             </MiddleArea>
             <BottomArea>
-                <div>
-                    <label htmlFor="logo">
-                        <Upload src={upload}/>
-                    </label>
+                <LabelDiv>
+                    <Upload src={upload}/>
+                    <UploadLabel htmlFor="logo">LOGO</UploadLabel>
                     <FileInput type="file" id="logo"/>
-                </div>
+                </LabelDiv>
 
                 <div>
                     <CreateButton>
-                        CREATE<br/>
-                        WISH
+                        CREATE<br/>WISH
                     </CreateButton>
                 </div>
             </BottomArea>
