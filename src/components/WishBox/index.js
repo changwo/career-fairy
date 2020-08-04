@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import upload from '../../assets/upload.png'
-import {BaseButton, BaseLabel} from "../../style/GlobalButtons";
+import {BaseButton} from "../../style/GlobalButtons";
 
 const Container = styled.div`
   background-color: #00d6ab;
   color: white;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0,0,0,0.2);
   padding: 20px;
   border-radius: 10px;
   width: 350px;
@@ -24,7 +24,7 @@ const BaseInputArea = styled.div`
    width: 100%;
    background-color: white;
    border-radius: 5px;
-   border: 2px solid #868686;
+   border: 2px solid #bebebe;
    padding: 10px;
 `
 
@@ -51,7 +51,7 @@ const CreateButton = styled(BaseButton)`
 const MiddleArea = styled(BaseInputArea)`
    height: 200px;
      label {
-    color: #999999;
+    color: #ffffff;
     font-size: 20px;
   }
 `
