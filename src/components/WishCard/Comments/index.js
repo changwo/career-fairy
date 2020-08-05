@@ -5,11 +5,13 @@ import TextareaAutosize from 'react-autosize-textarea';
 import {getTimeAgo} from "../../../sampleData";
 import {DefaultAvaSmall} from "../../../style/GlobalImages";
 import {BaseButton} from "../../../style/GlobalButtons";
-import Zoom from "react-reveal/Zoom";
+import Fade from 'react-reveal/Fade';
 
 
 const CommentsContainer = styled.div`
-grid-area: comments;
+  grid-area: comments;
+width: 100%;
+height: 100%;
   padding: 10px 10px 0 10px;
 `
 const CommentDiv = styled.div`
@@ -75,41 +77,41 @@ const Input = styled(TextareaAutosize)`
 `
 
 
-const Comments = ({comments, handleNewComment, submitComment, content}) => {
+const Comments = ({comments, handleNewComment, submitComment, content, showComments}) => {
 
     let renderComments = comments.map((comment, index) => {
 
         return (
-            <Zoom duration={100}>
-                <CommentDiv key={index}>
-                    <HeaderDiv>
-                        <AvaNameTimeDiv>
-                            <AvatarDiv>
-                                <DefaultAvaSmall src={comment.avatar}/>
-                            </AvatarDiv>
-                            <NameTimeDiv>
-                                <Name>{comment.name}</Name>
-                                <Time>{getTimeAgo(comment.created)}</Time>
-                            </NameTimeDiv>
-                        </AvaNameTimeDiv>
-                    </HeaderDiv>
-                    <ContentDiv>
-                        <p>{comment.content}</p>
-                    </ContentDiv>
-                </CommentDiv>
-            </Zoom>
+            <CommentDiv key={index}>
+                <HeaderDiv>
+                    <AvaNameTimeDiv>
+                        <AvatarDiv>
+                            <DefaultAvaSmall src={comment.avatar}/>
+                        </AvatarDiv>
+                        <NameTimeDiv>
+                            <Name>{comment.name}</Name>
+                            <Time>{getTimeAgo(comment.created)}</Time>
+                        </NameTimeDiv>
+                    </AvaNameTimeDiv>
+                </HeaderDiv>
+                <ContentDiv>
+                    <p>{comment.content}</p>
+                </ContentDiv>
+            </CommentDiv>
         )
     })
 
 
     return (
         <CommentsContainer>
-            {renderComments}
-            <InputDiv>
-                <Input onResize={(e) => {
-                }} value={content} onChange={handleNewComment}/>
-                <PostComment onClick={submitComment}>Post</PostComment>
-            </InputDiv>
+            <Fade collapse={showComments}>
+                {renderComments}
+                <InputDiv>
+                    <Input onResize={(e) => {
+                    }} value={content} onChange={handleNewComment}/>
+                    <PostComment onClick={submitComment}>Post</PostComment>
+                </InputDiv>
+            </Fade>
         </CommentsContainer>
     )
 }

@@ -7,7 +7,6 @@ import commentIcon from '../../assets/comment.png'
 import {WishCardContainer} from "../../style/GlobalContainers";
 import Comments from "./Comments";
 import RubberBand from 'react-reveal/RubberBand';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 
 const shortid = require("shortid");
@@ -92,6 +91,8 @@ const Animate = styled(RubberBand)`
   width: 100%;
 `
 
+
+
 const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
     const [showComments, setShowComments] = useState(false)
@@ -136,7 +137,7 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
     return (
         <WishCardContainer>
             <WishLikeCountDiv>
-                <Animate  spy={amountOfHearts}>
+                <Animate wait={0} delay={0} spy={amountOfHearts}>
                     <GreenOval onClick={handleHeart}>
                         <WishHeartImg/>
                         <p>{amountOfHearts}</p>
@@ -160,12 +161,13 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                         <p>{localComments.length} </p>
                     </> : "Be the first to comment")}
             </AmountCommentsDiv>
-            {/*<TransitionGroup {...groupProps}>*/}
-            {showComments ? <Comments content={commentData} id={id}
+            {showComments ?
+                <Comments content={commentData} id={id}
+                          showComments={showComments}
                                       submitComment={submitComment}
                                       handleNewComment={handleNewComment}
-                                      comments={localComments}/> : null}
-            {/*</TransitionGroup>*/}
+                                      comments={localComments}/>
+                                      : null}
         </WishCardContainer>
     )
 }
