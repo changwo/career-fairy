@@ -33,10 +33,12 @@ const RightPage = styled.div`
   width: 70%;
 `
 const FilterInput = styled(BaseInput)`
+  border: 1px solid ${props => props.theme.fairyGreen};
+  border-radius: 5px;
 `
 
 const FilterDiv = styled.div`
-
+  display: flex;
 `
 
 
@@ -52,9 +54,14 @@ const Home = ({wishReducer: {wishes}}) => {
                     <WishBox/>
                 </LeftPage>
                 <RightPage>
-                    {wishes ? wishes.map(wish => {
-                        return <WishCard key={wish.id} wish={wish}/>
-                    }) : null}
+                    <FilterDiv>
+                        <FilterInput/>
+                    </FilterDiv>
+                    <div>
+                        {wishes ? wishes.map(wish => {
+                            return <WishCard key={wish.id} wish={wish}/>
+                        }) : null}
+                    </div>
                 </RightPage>
 
             </InnerPage>
