@@ -4,7 +4,7 @@ import upload from '../../assets/upload.png'
 import {BaseButton} from "../../style/GlobalButtons";
 
 const Container = styled.div`
-  background-color: #00d6ab;
+  background-color: ${(props) => props.theme.fairyGreen};
   color: white;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0,0,0,0.2);
   padding: 20px;
@@ -78,7 +78,7 @@ const BottomArea = styled.div`
 const LabelDiv = styled.div`
   height: 58px;
     padding: 10px 20px;
-  background-color: #00B995;
+  background-color: ${(props) => props.theme.fairyGreen};
   color: white;
   display: flex;
   align-items: center;

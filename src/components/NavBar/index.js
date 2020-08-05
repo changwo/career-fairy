@@ -20,12 +20,12 @@ const LogoDiv = styled.div`
     align-items: center;
     span {
       font-size: 40px;
-      color: #00B995;
+      color: ${(props) => props.theme.fairyGreen};
       font-weight: bold;
       margin-right: 5px;
     }
     h1 {
-      color: #00B995;
+      color: ${(props) => props.theme.fairyGreen};
       font-size: 40px;
       margin-top: 5px;
       
@@ -35,7 +35,7 @@ const LogoDiv = styled.div`
 
 const Login = styled(BaseButton)`
   padding: 10px 20px;
-  background-color: #00B995;
+  background-color: ${(props) => props.theme.fairyGreen};
   color: white;
   font-weight: bold;
   border: none;
