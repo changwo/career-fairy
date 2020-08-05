@@ -6,6 +6,9 @@ import {DefaultAvaLarge, WishHeartImg} from "../../style/GlobalImages";
 import commentIcon from '../../assets/comment.png'
 import {WishCardContainer} from "../../style/GlobalContainers";
 import Comments from "./Comments";
+import RubberBand from 'react-reveal/RubberBand';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+
 
 const shortid = require("shortid");
 
@@ -84,6 +87,10 @@ const GreenOval = styled.div`
     padding-right: 0.5rem;
   }
 `
+const Animate = styled(RubberBand)`
+  height: 100%;
+  width: 100%;
+`
 
 const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
@@ -91,7 +98,6 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
     const [commentData, setCommentData] = useState(``)
     const [amountOfHearts, setAmountOfHearts] = useState(amount_of_hearts)
     const [localComments, setLocalComments] = useState(comments)
-
 
     const handleHeart = () => {
         const newAmount = amountOfHearts + 1
@@ -102,6 +108,12 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
         const value = e.currentTarget.value;
         setCommentData(value);
     }
+
+    // const groupProps = {
+    //   appear: false,
+    //   enter: false,
+    //   exit: false,
+    // };
 
     const submitComment = async (e) => {
         e.preventDefault();
@@ -124,10 +136,12 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
     return (
         <WishCardContainer>
             <WishLikeCountDiv>
-                <GreenOval onClick={handleHeart}>
-                    <WishHeartImg />
-                    <p>{amountOfHearts}</p>
-                </GreenOval>
+                <Animate  spy={amountOfHearts}>
+                    <GreenOval onClick={handleHeart}>
+                        <WishHeartImg/>
+                        <p>{amountOfHearts}</p>
+                    </GreenOval>
+                </Animate >
             </WishLikeCountDiv>
             <LogoDiv>
                 <DefaultAvaLarge src={logo}/>
@@ -146,11 +160,12 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                         <p>{localComments.length} </p>
                     </> : "Be the first to comment")}
             </AmountCommentsDiv>
-            {showComments ?
-                <Comments content={commentData} id={id}
-                          submitComment={submitComment}
-                          handleNewComment={handleNewComment}
-                          comments={localComments}/> : null}
+            {/*<TransitionGroup {...groupProps}>*/}
+            {showComments ? <Comments content={commentData} id={id}
+                                      submitComment={submitComment}
+                                      handleNewComment={handleNewComment}
+                                      comments={localComments}/> : null}
+            {/*</TransitionGroup>*/}
         </WishCardContainer>
     )
 }

@@ -5,6 +5,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 import {getTimeAgo} from "../../../sampleData";
 import {DefaultAvaSmall} from "../../../style/GlobalImages";
 import {BaseButton} from "../../../style/GlobalButtons";
+import Zoom from "react-reveal/Zoom";
 
 
 const CommentsContainer = styled.div`
@@ -15,7 +16,7 @@ const CommentDiv = styled.div`
   
   width: 100%;
   min-width: 375px;
-  
+  margin-top: 1rem;
   border-top: 1px solid rgba(128,128,128,0.32);
 `
 const NameTimeDiv = styled.div`
@@ -79,22 +80,24 @@ const Comments = ({comments, handleNewComment, submitComment, content}) => {
     let renderComments = comments.map((comment, index) => {
 
         return (
-            <CommentDiv key={index}>
-                <HeaderDiv>
-                    <AvaNameTimeDiv>
-                        <AvatarDiv>
-                            <DefaultAvaSmall src={comment.avatar}/>
-                        </AvatarDiv>
-                        <NameTimeDiv>
-                            <Name>{comment.name}</Name>
-                            <Time>{getTimeAgo(comment.created)}</Time>
-                        </NameTimeDiv>
-                    </AvaNameTimeDiv>
-                </HeaderDiv>
-                <ContentDiv>
-                    <p>{comment.content}</p>
-                </ContentDiv>
-            </CommentDiv>
+            <Zoom duration={100}>
+                <CommentDiv key={index}>
+                    <HeaderDiv>
+                        <AvaNameTimeDiv>
+                            <AvatarDiv>
+                                <DefaultAvaSmall src={comment.avatar}/>
+                            </AvatarDiv>
+                            <NameTimeDiv>
+                                <Name>{comment.name}</Name>
+                                <Time>{getTimeAgo(comment.created)}</Time>
+                            </NameTimeDiv>
+                        </AvaNameTimeDiv>
+                    </HeaderDiv>
+                    <ContentDiv>
+                        <p>{comment.content}</p>
+                    </ContentDiv>
+                </CommentDiv>
+            </Zoom>
         )
     })
 
