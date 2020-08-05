@@ -11,10 +11,8 @@ export const PostImage = styled.img`
   cursor: pointer;
 `
 
-const Carousel = (props) => {
-    const {
-        images,
-    } = props
+const Carousel = ({image}) => {
+
 
     const settings = {
       dots: true,
@@ -27,9 +25,8 @@ const Carousel = (props) => {
     return (
         <div className="App">
             <Slider {...settings}>
-                {images? images.map((url, index) => (
-            <PostImage key={index} src={url}/>
-        )): null}
+                {image?
+            <PostImage src={image}/> : null}
             </Slider>
         </div>
     )

@@ -9,14 +9,14 @@ export const getTimeAgo = (stamp) => {
 const shortid = require("shortid");
 
 const rand = () => {
-    return Math.floor(Math.random() * 100) + 1
+    return Math.floor(Math.random() * 60) + 1
 }
 
 const smallRand = () => {
     return Math.floor(Math.random() * 40) + 1
 }
 
-export const WishesObj = [
+export const sampleWishes = [
     {
         id: shortid.generate(),
         logo: `https://picsum.photos/id/237/200/300`,

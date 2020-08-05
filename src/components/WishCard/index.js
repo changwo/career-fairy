@@ -3,7 +3,7 @@ import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import {DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
-import {WishContainer} from "../../style/GlobalContainers";
+import {WishCardContainer} from "../../style/GlobalContainers";
 import Carousel from "../Carousel";
 import Comments from "./Comments";
 
@@ -16,16 +16,6 @@ const rand = () => {
 const smallRand = () => {
     return Math.floor(Math.random() * 40) + 1
 }
-
-const Container = styled.div`
-  width: 500px;
-`
-
-const HeartDiv = styled.div`
-   border-radius: 5px;
-   background-color: limegreen;
-`
-
 
 
 const DefaultDiv = styled.div`
@@ -106,14 +96,15 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
             avatar: `https://i.pravatar.cc/150?img=${rand()}`,
             content: commentData
         }
-        setLocalComments([...newComment, ...localComments])
+        console.log("newcomment", newComment)
+        setLocalComments([newComment, ...localComments])
         setCommentData("")
     }
 
     const timeAgo = dayjs(created).fromNow();
 
     return (
-        <WishContainer>
+        <WishCardContainer>
             <DefaultAvaSmall src={avatar}/>
             <WishNameTimeDiv>
                 <p>{name}</p>
@@ -141,7 +132,7 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
                           submitComment={submitComment}
                           handleNewComment={handleNewComment}
                           comments={localComments}/> : null}
-        </WishContainer>
+        </WishCardContainer>
     )
 }
 

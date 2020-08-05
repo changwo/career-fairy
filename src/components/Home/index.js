@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import styled from "styled-components";
 import NavBar from "../NavBar";
 import WishBox from "../WishBox";
+import WishCard from "../WishCard";
+import {sampleWishes} from "../../sampleData";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -44,6 +46,9 @@ const Home = ({videoReducer: {data}}) => {
                     <WishBox/>
                 </LeftPage>
                 <RightPage>
+                    {sampleWishes.map(wish => {
+                        return <WishCard key={wish.id} wish={wish}/>
+                    })}
 
                 </RightPage>
 

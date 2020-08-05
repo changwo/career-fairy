@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const WishContainer = styled.div`
+export const WishCardContainer = styled.div`
   display: grid;
   padding: 20px;
   grid-template-areas:
