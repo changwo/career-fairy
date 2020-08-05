@@ -41,5 +41,8 @@ export const GlobalStyle = createGlobalStyle`
 
 export const defaultTheme = {
     filterTheme: "invert(48%) sepia(90%) saturate(7499%) hue-rotate(351deg) brightness(87%) contrast(135%)",
+    white: "invert(99%) sepia(4%) saturate(449%) hue-rotate(272deg) brightness(118%) contrast(100%)",
+    heartRed: "#E04F5F",
+    fairyGreen: "#00d2aa"
 };
 

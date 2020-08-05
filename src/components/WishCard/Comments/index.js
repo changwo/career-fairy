@@ -56,20 +56,21 @@ const AvaNameTimeDiv = styled.div`
 `
 
 const PostComment = styled(BaseButton)`
-width: 5rem;
-height: 2rem;
-padding: 5px;
-margin-left: 0.3rem;
+    width: 5rem;
+    height: 2rem;
+    padding: 5px;
+    margin-left: 0.3rem;
 `
 const Input = styled(TextareaAutosize)`
-padding: 0.5rem;
-border-radius: 20px;
-display: flex;
-width: 100%;
-resize: none;
-height: 1rem;
-max-height: 300px;
-align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    width: 100%;
+    resize: none;
+    height: 1rem;
+    outline: none;
+    max-height: 300px;
+    align-items: center;
 `
 
 

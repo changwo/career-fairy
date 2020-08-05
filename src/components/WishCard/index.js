@@ -5,7 +5,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import {DefaultAvaLarge, WishHeartImg} from "../../style/GlobalImages";
 import commentIcon from '../../assets/comment.png'
 import {WishCardContainer} from "../../style/GlobalContainers";
-import Carousel from "../Carousel";
 import Comments from "./Comments";
 
 const shortid = require("shortid");
@@ -48,17 +47,9 @@ const WishTextDiv = styled(DefaultDiv)`
   }
 `;
 
-const WishImageDiv = styled(DefaultDiv)`
-  grid-area: i;
-`;
-
-const WishLikeShareDiv = styled(DefaultDiv)`
-  justify-content: space-evenly;
-  grid-area: like;
-`;
-
 const AmountCommentsDiv = styled(DefaultDiv)`
   grid-area: commentCount;
+  justify-content: flex-end;
   cursor: pointer;
   p{
     margin-left: 0.4rem;
@@ -76,6 +67,22 @@ const WishLikeCountDiv = styled(DefaultDiv)`
 const CommentImg = styled.img`
    width: 20px;
    height: 20px;
+`
+
+const GreenOval = styled.div`
+  cursor: pointer;
+  background-color: ${(props) => props.theme.fairyGreen};
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  height: 80%;
+  border-radius: 20px;
+  p{
+    font-size: 1.5rem;
+    padding-right: 0.5rem;
+  }
 `
 
 const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
@@ -116,6 +123,12 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
 
     return (
         <WishCardContainer>
+            <WishLikeCountDiv>
+                <GreenOval onClick={handleHeart}>
+                    <WishHeartImg />
+                    <p>{amountOfHearts}</p>
+                </GreenOval>
+            </WishLikeCountDiv>
             <LogoDiv>
                 <DefaultAvaLarge src={logo}/>
             </LogoDiv>
@@ -126,8 +139,6 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
             <WishTextDiv>
                 <p>{content}</p>
             </WishTextDiv>
-            <WishImageDiv>{logo.length ? <Carousel images={logo}/> : null}</WishImageDiv>
-
             <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
                 {showComments ? <p>Hide Comments</p> :
                     (localComments.length ? <>
@@ -135,10 +146,6 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                         <p>{localComments.length} </p>
                     </> : "Be the first to comment")}
             </AmountCommentsDiv>
-            <WishLikeCountDiv>
-                <WishHeartImg onClick={handleHeart}/>
-                <p>{amountOfHearts}</p>
-            </WishLikeCountDiv>
             {showComments ?
                 <Comments content={commentData} id={id}
                           submitComment={submitComment}

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import heart from "../../assets/heartSmall.png";
+import greenHeart from '../../assets/green_heart.png'
+
 
 export const DefaultAvaSmall = styled.img`
   cursor: pointer;
@@ -18,9 +19,8 @@ export const DefaultAvaLarge = styled(DefaultAvaSmall)`
   padding: 5px;
 `;
 export const WishHeartImg = styled.img`
-  width: 22px;
-  height: 22px;
-  content: url(${heart});
-  filter: ${(props) => props.theme.filterTheme};
+  width: 50px;
+  height: 50px;
+  content: url(${greenHeart});
   cursor: pointer;
 `;

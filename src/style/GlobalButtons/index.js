@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const BaseButton = styled.button`
   padding: 10px 20px;
-  background-color: #00B995;
+  background-color: ${props => props.theme.fairyGreen};
   color: white;
   font-weight: bold;
   border: none;
@@ -13,7 +13,7 @@ export const BaseButton = styled.button`
 
 export const BaseLabel = styled.label`
   padding: 10px 20px;
-  background-color: #00B995;
+  background-color: ${props => props.theme.fairyGreen};
   color: white;
   font-weight: bold;
   border: none;
