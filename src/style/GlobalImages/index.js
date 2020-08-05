@@ -13,6 +13,9 @@ export const DefaultAvaSmall = styled.img`
 export const DefaultAvaLarge = styled(DefaultAvaSmall)`
   height: 60px;
   width: 60px;
+  border-radius: 3px;
+  object-fit: contain;
+  padding: 5px;
 `;
 export const WishHeartImg = styled.img`
   width: 22px;

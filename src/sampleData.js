@@ -97,8 +97,8 @@ export const sampleWishes = [
     {
         id: shortid.generate(),
         logo: `https://logo.clearbit.com/facebook.com`,
-        name: "FaceBook",
-        companyName: "",
+        name: "Jesica Parker",
+        companyName: "FaceBook",
         created: new Date(),
         amount_of_hearts: smallRand(),
         avatar: `https://i.pravatar.cc/150?img=${rand()}`,

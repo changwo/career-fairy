@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import {DefaultAvaLarge, DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
+import {DefaultAvaLarge, WishHeartImg} from "../../style/GlobalImages";
+import commentIcon from '../../assets/comment.png'
 import {WishCardContainer} from "../../style/GlobalContainers";
 import Carousel from "../Carousel";
 import Comments from "./Comments";
@@ -46,7 +47,6 @@ const WishTextDiv = styled(DefaultDiv)`
 
 const WishImageDiv = styled(DefaultDiv)`
   grid-area: i;
-
 `;
 
 const WishLikeShareDiv = styled(DefaultDiv)`
@@ -56,6 +56,7 @@ const WishLikeShareDiv = styled(DefaultDiv)`
 
 const AmountCommentsDiv = styled(DefaultDiv)`
   grid-area: commentCount;
+  cursor: pointer;
   
 `;
 
@@ -65,13 +66,16 @@ const CommentLink = styled.a`
 
 const WishLikeCountDiv = styled(DefaultDiv)`
   grid-area: likeCount;
-  
   p {
     white-space: pre-line;
   }
 `;
 
-const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, content, comments}}) => {
+const CommentImg = styled.img`
+  
+`
+
+const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
     const [showComments, setShowComments] = useState(false)
     const [commentData, setCommentData] = useState(``)
@@ -113,7 +117,7 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
                 <DefaultAvaLarge src={logo}/>
             </LogoDiv>
             <WishNameTimeDiv>
-                <p>{name}</p>
+                <p>{companyName}</p>
                 <p>{timeAgo}</p>
             </WishNameTimeDiv>
             <WishTextDiv>
@@ -124,11 +128,9 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
                 <WishHeartImg onClick={handleHeart}/>
                 <p>{amountOfHearts}</p>
             </WishLikeShareDiv>
-            <AmountCommentsDiv>
-                <CommentLink onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
+            <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
                     {showComments ? <p>Hide Comments</p> :
-                        <p>{localComments.length ? `${localComments.length} Comments` : "Be the first to comment"}</p>}
-                </CommentLink>
+                        (localComments.length ? <><p>{localComments.length} </p> <CommentImg alt="comment icon" src={commentIcon}/> </>: "Be the first to comment")}
             </AmountCommentsDiv>
             <WishLikeCountDiv>
                 <WishHeartImg onClick={handleHeart}/>

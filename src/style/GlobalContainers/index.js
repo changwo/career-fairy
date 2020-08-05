@@ -11,7 +11,7 @@ export const WishCardContainer = styled.div`
     "like like like likeCount"
     "comments comments comments comments";
   grid-template-columns: minmax(60px, 5%) minmax(150px, 1fr) 1fr minmax(
-      60px,
+      80px,
       5%
     );
   grid-template-rows: minmax(60px, 5%) minmax(10px, auto) minmax(0, auto) minmax(
