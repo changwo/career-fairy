@@ -7,6 +7,8 @@ import commentIcon from '../../assets/comment.png'
 import {WishCardContainer} from "../../style/GlobalContainers";
 import Comments from "./Comments";
 import RubberBand from 'react-reveal/RubberBand';
+import Zoom from "react-reveal/Zoom";
+
 const shortid = require("shortid");
 
 const rand = () => {
@@ -146,47 +148,49 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
     const timeAgo = dayjs(created).fromNow();
 
     return (
-        <WishCardContainer>
-            <WishLikeCountDiv>
-                <Animate wait={0} delay={0} spy={amountOfHearts}>
-                    <GreenOval onClick={handleHeart}>
-                        <WishHeartImg/>
-                        <p>{amountOfHearts}</p>
-                    </GreenOval>
-                </Animate>
-            </WishLikeCountDiv>
-            <LogoDiv>
-                <DefaultAvaLarge src={logo}/>
-            </LogoDiv>
-            <WishNameTimeDiv>
-                <h1>{companyName}</h1>
-            </WishNameTimeDiv>
-            <WishTextDiv>
-                <p>{content}</p>
-            </WishTextDiv>
-            <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
+        <Zoom right>
+            <WishCardContainer>
+                <WishLikeCountDiv>
+                    <Animate wait={0} delay={0} spy={amountOfHearts}>
+                        <GreenOval onClick={handleHeart}>
+                            <WishHeartImg/>
+                            <p>{amountOfHearts}</p>
+                        </GreenOval>
+                    </Animate>
+                </WishLikeCountDiv>
+                <LogoDiv>
+                    <DefaultAvaLarge src={logo}/>
+                </LogoDiv>
+                <WishNameTimeDiv>
+                    <h1>{companyName}</h1>
+                </WishNameTimeDiv>
+                <WishTextDiv>
+                    <p>{content}</p>
+                </WishTextDiv>
+                <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
+                    {showComments ?
+                        <AuthorDiv>
+                            <DefaultAvaSmall src={avatar}/>
+                            <div>
+                                <h2>{name}</h2>
+                                <p>{timeAgo}</p>
+                            </div>
+                        </AuthorDiv> :
+                        (localComments.length ? <>
+                            <CommentImg alt="comment icon" src={commentIcon}/>
+                            <p>{localComments.length} </p>
+                        </> : "Be the first to comment")}
+                </AmountCommentsDiv>
                 {showComments ?
-                    <AuthorDiv>
-                        <DefaultAvaSmall src={avatar}/>
-                        <div>
-                            <h2>{name}</h2>
-                            <p>{timeAgo}</p>
-                        </div>
-                    </AuthorDiv> :
-                    (localComments.length ? <>
-                        <CommentImg alt="comment icon" src={commentIcon}/>
-                        <p>{localComments.length} </p>
-                    </> : "Be the first to comment")}
-            </AmountCommentsDiv>
-            {showComments ?
-                <Comments content={commentData} id={id}
-                          showComments={showComments}
-                          submitComment={submitComment}
-                          handleNewComment={handleNewComment}
-                          handleCollapse={handleCollapse}
-                          comments={localComments}/>
-                : null}
-        </WishCardContainer>
+                    <Comments content={commentData} id={id}
+                              showComments={showComments}
+                              submitComment={submitComment}
+                              handleNewComment={handleNewComment}
+                              handleCollapse={handleCollapse}
+                              comments={localComments}/>
+                    : null}
+            </WishCardContainer>
+        </Zoom>
     )
 }
 

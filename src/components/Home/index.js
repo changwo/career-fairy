@@ -29,7 +29,7 @@ const LeftPage = styled.div`
 `
 
 const RightPage = styled.div`
-  width: 65%;
+  width: 70%;
 `
 
 
