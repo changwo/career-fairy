@@ -57,7 +57,10 @@ const WishLikeShareDiv = styled(DefaultDiv)`
 const AmountCommentsDiv = styled(DefaultDiv)`
   grid-area: commentCount;
   cursor: pointer;
-    
+  p{
+    margin-left: 0.4rem;
+    text-align: center;
+  }
 `;
 
 const WishLikeCountDiv = styled(DefaultDiv)`

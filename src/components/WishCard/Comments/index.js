@@ -44,7 +44,6 @@ const InputDiv = styled.form`
 display: flex;
 justify-content: center;
 align-items: center;
-flex-direction: column;
 `
 
 const AvaNameTimeDiv = styled.div`
@@ -57,16 +56,14 @@ const PostComment = styled(BaseButton)`
 width: 5rem;
 height: 2rem;
 padding: 5px;
-margin: 0.5rem 0 0.5rem 0;
 `
 const Input = styled(TextareaAutosize)`
-padding: 1rem;
+padding: 0.5rem;
 border-radius: 30px;
 display: flex;
 width: 100%;
 resize: none;
-margin-top: 1rem;
-height: 3rem;
+height: 1rem;
 max-height: 300px;
 align-items: center;
 `
