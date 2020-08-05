@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import TextareaAutosize from 'react-autosize-textarea';
-import {ThemedButton} from "../../../style/profileModuleContainer";
 import {getTimeAgo} from "../../../sampleData";
 import {DefaultAvaSmall} from "../../../style/GlobalImages";
 import {BaseButton} from "../../../style/GlobalButtons";

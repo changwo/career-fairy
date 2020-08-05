@@ -6,12 +6,12 @@ import Home from "./components/Home";
 import {store} from "./store";
 import {Provider} from "react-redux";
 import {ThemeProvider} from "styled-components";
-import {GlobalStyle, theme} from "./style";
+import {defaultTheme, GlobalStyle} from "./style";
 import WishCard from "./components/WishCard";
 
 ReactDOM.render(
     <Provider store={store}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={defaultTheme}>
             <GlobalStyle/>
             <BrowserRouter>
                 <Switch>
