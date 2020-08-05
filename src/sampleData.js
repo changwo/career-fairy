@@ -79,5 +79,40 @@ export const CommentObj = {
                 " sit amet mauris dignissim, sed interdum nisl pellentesque. Maecenas non lorem blandit," +
                 " volutpat nisl in, rhoncus mauris."
         }
+    ],
+    4: [
+        {
+            name: "John Doe",
+            created: new Date(),
+            avatar: `https://i.pravatar.cc/150?img=${rand()}`,
+            content: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc." +
+                " Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at" +
+                " dolor. Maecenas mattis."
+        },
+        {
+            name: "Elijah Woods",
+            created: new Date(),
+            avatar: `https://i.pravatar.cc/150?img=${rand()}`,
+            content: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc." +
+                " Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at" +
+                " dolor. Maecenas mattis."
+        },
+        {
+            name: "James Moore",
+            created: new Date(),
+            avatar: `https://i.pravatar.cc/150?img=${rand()}`,
+            content: "Nulla quis sem at nibh elementum imperdiet. " +
+                "Duis sagittis ipsum. Praesent mauris. Fusce nec tellus" +
+                " sed augue semper porta. Mauris massa. Vestibulum lacinia" +
+                " arcu eget nulla. Class aptent taciti sociosqu ad litora" +
+                " torquent per conubia nostra, per inceptos himenaeos. "
+        },
+        {
+            name: "Sam James",
+            created: new Date(),
+            avatar: `https://i.pravatar.cc/150?img=${rand()}`,
+            content: "Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum." +
+                " Morbi in ipsum sit amet pede facilisis laoreet."
+        }
     ]
 }
