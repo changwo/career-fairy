@@ -7,7 +7,7 @@ import {store} from "./store";
 import {Provider} from "react-redux";
 import {ThemeProvider} from "styled-components";
 import {GlobalStyle, theme} from "./style";
-import WishBox from "./components/WishBox";
+import WishCard from "./components/WishCard";
 
 ReactDOM.render(
     <Provider store={store}>
@@ -16,7 +16,7 @@ ReactDOM.render(
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact component={Home}/>
-                    <Route path="/test" exact component={WishBox}/>
+                    <Route path="/test" exact component={WishCard}/>
                 </Switch>
             </BrowserRouter>
         </ThemeProvider>

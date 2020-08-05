@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import styled from "styled-components";
 import NavBar from "../NavBar";
+import WishBox from "../WishBox";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -14,12 +15,15 @@ const InnerPage = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0 1rem;
   
   
 `
 
 const LeftPage = styled.div`
   width: 30%;
+  display: flex;
+  justify-content: center;
   border: 1px solid red;
 `
 
@@ -37,7 +41,7 @@ const Home = ({videoReducer: {data}}) => {
             <NavBar/>
             <InnerPage>
                 <LeftPage>
-
+                    <WishBox/>
                 </LeftPage>
                 <RightPage>
 

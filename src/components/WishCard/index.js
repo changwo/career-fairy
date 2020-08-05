@@ -10,7 +10,7 @@ const HeartDiv = styled.div`
    background-color: limegreen;
 `
 
-const WishItem = (props) => {
+const WishCard = (props) => {
     const [showComments, setShowComments] = useState(false);
 
     return (
@@ -22,4 +22,4 @@ const WishItem = (props) => {
     )
 }
 
-export default WishItem
+export default WishCard
