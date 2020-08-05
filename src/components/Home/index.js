@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import WishBox from "../WishBox";
 import WishCard from "../WishCard";
 import {sampleWishes} from "../../sampleData";
+import {BaseInput} from "../../style/GlobalInputs";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -30,6 +31,12 @@ const LeftPage = styled.div`
 
 const RightPage = styled.div`
   width: 70%;
+`
+const FilterInput = styled(BaseInput)`
+`
+
+const FilterDiv = styled.div`
+
 `
 
 

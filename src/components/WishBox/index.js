@@ -6,6 +6,7 @@ import {BaseButton} from "../../style/GlobalButtons";
 import {rand, smallRand} from "../../sampleData";
 import {useDispatch} from "react-redux";
 import {addWish} from "../../store/actions";
+import {BaseInput} from "../../style/GlobalInputs";
 
 const shortid = require("shortid");
 
@@ -99,12 +100,7 @@ const UploadLabel = styled.label`
 font-size: 20px;
 `
 
-const BaseInput = styled.input`
-   padding: 10px;
-   width: 100%;
-   outline: transparent;
-   border: none;
-`
+
 const CompInput = styled(BaseInput)`
   padding: 0;
   margin-top: 10px;
