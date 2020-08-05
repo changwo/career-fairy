@@ -39,5 +39,7 @@ export const GlobalStyle = createGlobalStyle`
 
 `;
 
-export const theme = {};
+export const defaultTheme = {
+    filterTheme: "invert(48%) sepia(90%) saturate(7499%) hue-rotate(351deg) brightness(87%) contrast(135%)",
+};
 

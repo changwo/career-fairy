@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import {DefaultAvaSmall} from "../../style/GlobalImages";
+import {DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
 import {WishContainer} from "../../style/GlobalContainers";
+import Carousel from "../Carousel";
 
 const shortid = require("shortid");
 
@@ -24,6 +25,8 @@ const HeartDiv = styled.div`
    background-color: limegreen;
 `
 
+
+
 const DefaultDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -42,6 +45,33 @@ const WishTextDiv = styled(DefaultDiv)`
   padding: 0 1rem 0 1rem;
   grid-area: c;
   p{
+    white-space: pre-line;
+  }
+`;
+
+const WishImageDiv = styled(DefaultDiv)`
+  grid-area: i;
+
+`;
+
+const WishLikeShareDiv = styled(DefaultDiv)`
+  justify-content: space-evenly;
+  grid-area: like;
+`;
+
+const AmountCommentsDiv = styled(DefaultDiv)`
+  grid-area: commentCount;
+  
+`;
+
+const CommentLink = styled.a`
+  cursor: pointer;
+`
+
+const WishLikeCountDiv = styled(DefaultDiv)`
+  grid-area: likeCount;
+  
+  p {
     white-space: pre-line;
   }
 `;
@@ -90,28 +120,25 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
             <WishTextDiv>
                 <p>{content}</p>
             </WishTextDiv>
-            <UserPostImageDiv>{images.length ? <Carousel images={images}/> : null}</UserPostImageDiv>
-            <UserPostLikeShareDiv>
-                {logged_in_user_liked ? (
-                    <ActiveLikeImg id={id} onClick={handleLike}/>
-                ) : (
-                    <UserPostLikeImg id={id} onClick={handleLike}/>
-                )}
-                <UserPostText>Like</UserPostText>
-                <UserPostShareImg/>
-                <UserPostText>Share</UserPostText>
-            </UserPostLikeShareDiv>
-            <AmountCommentsDiv><CommentLink onClick={handleRenderComments}>
-                <p>{amount_of_comments ? `${amount_of_comments} Comments` : "Be the first to comment"}</p>
-            </CommentLink></AmountCommentsDiv>
-            <UserPostLikeCountDiv>
-                <UserPostText>{amount_of_hearts} hearts</UserPostText>
-            </UserPostLikeCountDiv>
-            {commentsData.showComments ?
-                <Comments handleDeleteComment={handleDeleteComment} content={commentsData.content} id={id}
+            <WishImageDiv>{logo.length ? <Carousel images={logo}/> : null}</WishImageDiv>
+            <WishLikeShareDiv>
+                <WishHeartImg onClick={handleHeart}/>
+                <p>{amountOfHearts}</p>
+            </WishLikeShareDiv>
+            <AmountCommentsDiv>
+                <CommentLink onClick={() => setShowComments(true)}>
+                    <p>{localComments.length ? `${localComments.length} Comments` : "Be the first to comment"}</p>
+                </CommentLink>
+            </AmountCommentsDiv>
+            <WishLikeCountDiv>
+                <WishHeartImg onClick={handleHeart}/>
+                <p>{amountOfHearts}</p>
+            </WishLikeCountDiv>
+            {showComments ?
+                <Comments content={commentData} id={id}
                           submitComment={submitComment}
                           handleNewComment={handleNewComment}
-                          comments={commentsData.commentsList}/> : null}
+                          comments={localComments}/> : null}
         </WishContainer>
     )
 }
