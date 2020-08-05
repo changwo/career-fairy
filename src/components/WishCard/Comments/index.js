@@ -82,6 +82,7 @@ const Comments = ({comments, handleNewComment, submitComment, content, showComme
     let renderComments = comments.map((comment, index) => {
 
         return (
+                <Fade collapse>
             <CommentDiv key={index}>
                 <HeaderDiv>
                     <AvaNameTimeDiv>
@@ -98,20 +99,21 @@ const Comments = ({comments, handleNewComment, submitComment, content, showComme
                     <p>{comment.content}</p>
                 </ContentDiv>
             </CommentDiv>
+                     </Fade>
         )
     })
 
 
     return (
         <CommentsContainer>
-            <Fade collapse={showComments}>
+
                 {renderComments}
+
                 <InputDiv>
                     <Input onResize={(e) => {
                     }} value={content} onChange={handleNewComment}/>
                     <PostComment onClick={submitComment}>Post</PostComment>
                 </InputDiv>
-            </Fade>
         </CommentsContainer>
     )
 }
