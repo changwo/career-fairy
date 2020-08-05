@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import TextareaAutosize from 'react-autosize-textarea';
 import {getTimeAgo} from "../../../sampleData";
-import {DefaultAvaSmall} from "../../../style/GlobalImages";
+import {CollapseArrow, DefaultAvaSmall} from "../../../style/GlobalImages";
 import {BaseButton} from "../../../style/GlobalButtons";
 import Fade from 'react-reveal/Fade';
 
@@ -62,7 +62,7 @@ const PostComment = styled(BaseButton)`
     width: 5rem;
     height: 2rem;
     padding: 5px;
-    margin-left: 0.3rem;
+    margin: 0 0.3rem;
 `
 const Input = styled(TextareaAutosize)`
     padding: 0.5rem 1rem;
@@ -77,7 +77,7 @@ const Input = styled(TextareaAutosize)`
 `
 
 
-const Comments = ({comments, handleNewComment, submitComment, content, showComments}) => {
+const Comments = ({comments, handleNewComment, submitComment, content, showComments, handleCollapse}) => {
 
     let renderComments = comments.map(comment => {
 
@@ -111,6 +111,7 @@ const Comments = ({comments, handleNewComment, submitComment, content, showComme
                 <Input onResize={(e) => {
                 }} value={content} onChange={handleNewComment}/>
                 <PostComment onClick={submitComment}>Post</PostComment>
+                <CollapseArrow onClick={handleCollapse}/>
             </InputDiv>
         </CommentsContainer>
     )

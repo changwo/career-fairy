@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import {DefaultAvaLarge, WishHeartImg} from "../../style/GlobalImages";
+import {DefaultAvaLarge, DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
 import commentIcon from '../../assets/comment.png'
 import {WishCardContainer} from "../../style/GlobalContainers";
 import Comments from "./Comments";
@@ -40,13 +40,14 @@ export const WishNameTimeDiv = styled(DefaultDiv)`
     margin-left: 0;
   }
   h1{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    font-weight: lighter;
   }
 `;
 
-const AuthorDiv = styled(WishNameTimeDiv)`
-  grid-area: auto;
-  align-items: flex-end;
+const AuthorDiv = styled.div`
+display: flex;
+  align-items: center;
 `
 
 const WishTextDiv = styled(DefaultDiv)`
@@ -55,6 +56,7 @@ const WishTextDiv = styled(DefaultDiv)`
   grid-area: c;
   p{
     white-space: pre-line;
+    
   }
 `;
 
@@ -62,9 +64,13 @@ const AmountCommentsDiv = styled(DefaultDiv)`
   grid-area: commentCount;
   justify-content: flex-end;
   cursor: pointer;
-  p{
+  p {
     margin-left: 0.4rem;
     text-align: center;
+    color: #565656;
+  }
+  h2 {
+    margin-left: 0.4rem;
   }
 `;
 
@@ -101,7 +107,6 @@ const Animate = styled(RubberBand)`
 `
 
 
-
 const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
     const [showComments, setShowComments] = useState(false)
@@ -119,11 +124,9 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
         setCommentData(value);
     }
 
-    // const groupProps = {
-    //   appear: false,
-    //   enter: false,
-    //   exit: false,
-    // };
+    const handleCollapse = () => {
+        setShowComments(false)
+    }
 
     const submitComment = async (e) => {
         e.preventDefault();
@@ -152,20 +155,26 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                         <WishHeartImg/>
                         <p>{amountOfHearts}</p>
                     </GreenOval>
-                </Animate >
+                </Animate>
             </WishLikeCountDiv>
             <LogoDiv>
                 <DefaultAvaLarge src={logo}/>
             </LogoDiv>
             <WishNameTimeDiv>
                 <h1>{companyName}</h1>
-
             </WishNameTimeDiv>
             <WishTextDiv>
                 <p>{content}</p>
             </WishTextDiv>
             <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
-                {showComments ? <AuthorDiv><h2>{name}</h2><p>{timeAgo}</p></AuthorDiv> :
+                {showComments ?
+                    <AuthorDiv>
+                        <DefaultAvaSmall src={avatar}/>
+                        <div>
+                            <h2>{name}</h2>
+                            <p>{timeAgo}</p>
+                        </div>
+                    </AuthorDiv> :
                     (localComments.length ? <>
                         <CommentImg alt="comment icon" src={commentIcon}/>
                         <p>{localComments.length} </p>
@@ -174,10 +183,11 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
             {showComments ?
                 <Comments content={commentData} id={id}
                           showComments={showComments}
-                                      submitComment={submitComment}
-                                      handleNewComment={handleNewComment}
-                                      comments={localComments}/>
-                                      : null}
+                          submitComment={submitComment}
+                          handleNewComment={handleNewComment}
+                          handleCollapse={handleCollapse}
+                          comments={localComments}/>
+                : null}
         </WishCardContainer>
     )
 }

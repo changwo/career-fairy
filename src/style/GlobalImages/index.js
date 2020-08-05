@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import greenHeart from '../../assets/green_heart.png'
+import collapseArrow from '../../assets/collapse-arrow.png'
 
 
 export const DefaultAvaSmall = styled.img`
@@ -22,5 +23,12 @@ export const WishHeartImg = styled.img`
   width: 50px;
   height: 50px;
   content: url(${greenHeart});
+  cursor: pointer;
+`;
+
+export const CollapseArrow = styled.img`
+  width: 32px;
+  height: 32px;
+  content: url(${collapseArrow});
   cursor: pointer;
 `;
