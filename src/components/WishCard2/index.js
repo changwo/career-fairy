@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import {DefaultAvaSmall} from "../../style/GlobalImages";
+import {WishContainer} from "../../style/GlobalContainers";
 
 const shortid = require("shortid");
 
@@ -21,6 +23,28 @@ const HeartDiv = styled.div`
    border-radius: 5px;
    background-color: limegreen;
 `
+
+const DefaultDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const WishNameTimeDiv = styled(DefaultDiv)`
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-area: nameTime;
+`;
+
+const WishTextDiv = styled(DefaultDiv)`
+  justify-content: flex-start;
+  padding: 0 1rem 0 1rem;
+  grid-area: c;
+  p{
+    white-space: pre-line;
+  }
+`;
 
 const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
@@ -57,23 +81,15 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
     const timeAgo = dayjs(created).fromNow();
 
     return (
-        <UserPostContainer>
-            {isModal ? modal : null}
-            <Avatar first_name={first_name} last_name={last_name} avatar={avatar}
-                    is_from_logged_in_user={is_from_logged_in_user} id={userID}/>
-            <UserPostNameTimeDiv>
-                <UserPostBlack>
-                    {first_name} {last_name}
-                </UserPostBlack>
-                <UserPostGrey>{timeAgo}</UserPostGrey>
-            </UserPostNameTimeDiv>
-            {isDropDown ? renderDropDown : null}
-            <UserPostMenuDiv>
-                {is_from_logged_in_user ? <UserPostMenuImg onClick={handleToggle} id={id}/> : null}
-            </UserPostMenuDiv>
-            <UserPostTextDiv>
-                <UserPostText>{content}</UserPostText>
-            </UserPostTextDiv>
+        <WishContainer>
+            <DefaultAvaSmall src={avatar}/>
+            <WishNameTimeDiv>
+                <p>{name}</p>
+                <p>{timeAgo}</p>
+            </WishNameTimeDiv>
+            <WishTextDiv>
+                <p>{content}</p>
+            </WishTextDiv>
             <UserPostImageDiv>{images.length ? <Carousel images={images}/> : null}</UserPostImageDiv>
             <UserPostLikeShareDiv>
                 {logged_in_user_liked ? (
@@ -96,7 +112,7 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
                           submitComment={submitComment}
                           handleNewComment={handleNewComment}
                           comments={commentsData.commentsList}/> : null}
-        </UserPostContainer>
+        </WishContainer>
     )
 }
 
