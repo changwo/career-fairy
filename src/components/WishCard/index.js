@@ -37,8 +37,17 @@ export const WishNameTimeDiv = styled(DefaultDiv)`
   grid-area: nameTime;
   p{
     color: #808080;
+    margin-left: 0;
+  }
+  h1{
+    font-size: 1.5rem;
   }
 `;
+
+const AuthorDiv = styled(WishNameTimeDiv)`
+  grid-area: auto;
+  align-items: flex-end;
+`
 
 const WishTextDiv = styled(DefaultDiv)`
   justify-content: flex-start;
@@ -79,7 +88,7 @@ const GreenOval = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 90px;
-  height: 80%;
+  min-height: 76px;
   border-radius: 20px;
   p{
     font-size: 1.5rem;
@@ -150,13 +159,13 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
             </LogoDiv>
             <WishNameTimeDiv>
                 <h1>{companyName}</h1>
-                <p>{timeAgo}</p>
+
             </WishNameTimeDiv>
             <WishTextDiv>
                 <p>{content}</p>
             </WishTextDiv>
             <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
-                {showComments ? <p>Hide Comments</p> :
+                {showComments ? <AuthorDiv><h2>{name}</h2><p>{timeAgo}</p></AuthorDiv> :
                     (localComments.length ? <>
                         <CommentImg alt="comment icon" src={commentIcon}/>
                         <p>{localComments.length} </p>
