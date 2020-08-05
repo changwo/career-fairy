@@ -35,6 +35,7 @@ const RightPage = styled.div`
 const FilterInput = styled(BaseInput)`
   border: 2px solid ${props => props.theme.fairyGreen};
   border-radius: 5px;
+   margin-right: 0.4rem;
   width: 100%;
 `
 
@@ -53,35 +54,43 @@ const Dropdown = styled.div`
   
 `
 const DropBtn = styled.button`
-margin-left: 0.4rem;
+   
    background-color: ${props => props.theme.fairyGreen};
    border-radius: 5px;
   color: white;
+  min-width: 160px;
   padding: 0.7rem 1rem;
   font-size: 16px;
-  border: none;
   cursor: pointer;
+  border: 1px solid ${props => props.theme.fairyGreen};
   :hover,:focus{
-    background-color: #2980B9;
+    background-color: white;
+    color:${props => props.theme.fairyGreen};
+    border: 1px solid ${props => props.theme.fairyGreen};
   }
   
 `
 
-const DropContent = styled.div`
+const DropContent = styled.ul`
   
-  display: ${props => (props.active? "block;": "none;")};
+  display: ${props => (props.active ? "block;" : "none;")};
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
   overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
-  a{
+  li{
       color: black;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      :hover {background-color: #ddd;}
+      :hover {
+      background-color: ${props => props.theme.fairyGreen};
+      color: white;
+      cursor: pointer;
+      }
   }
 `
 
@@ -89,9 +98,17 @@ const DropContent = styled.div`
 const Home = ({wishReducer: {wishes}}) => {
     const [search, setSearch] = useState("")
     const [showDrop, setShowDrop] = useState(false)
+    const [sortBy, setSortBy] = useState("")
     console.log(showDrop);
 
+    const handleSelect = (e) => {
+        const value = e.currentTarget.id;
+        setShowDrop(false)
+        setSortBy(value)
+    }
+
     const handleFilterWishes = () => {
+
         return wishes.map((wish) => {
             if (
                 wish.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -122,11 +139,11 @@ const Home = ({wishReducer: {wishes}}) => {
                         <label htmlFor="search">Search:</label>
                         <FilterInput onChange={handleSearch} value={search} id="search"/>
                         <Dropdown>
-                            <DropBtn onClick={e => setShowDrop(!showDrop)}>Dropdown</DropBtn>
+                            <DropBtn onClick={e => setShowDrop(!showDrop)}>Sort by</DropBtn>
                             <DropContent active={showDrop}>
-                                <a href="#home">Top</a>
-                                <a href="#about">New</a>
-                                <a href="#contact">Trending</a>
+                                <li onClick={handleSelect} id="top">Top</li>
+                                <li onClick={handleSelect} id="new">New</li>
+                                <li onClick={handleSelect} id="trending">Trending</li>
                             </DropContent>
                         </Dropdown>
                     </FilterDiv>
