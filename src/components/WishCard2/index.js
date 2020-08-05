@@ -2,7 +2,16 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import {useDispatch} from "react-redux";
+
+const shortid = require("shortid");
+
+const rand = () => {
+    return Math.floor(Math.random() * 100) + 1
+}
+
+const smallRand = () => {
+    return Math.floor(Math.random() * 40) + 1
+}
 
 const Container = styled.div`
   width: 500px;
@@ -13,114 +22,39 @@ const HeartDiv = styled.div`
    background-color: limegreen;
 `
 
-const WishCard = (props) => {
-    const [showComments, setShowComments] = useState(false);
-
-    const {
-        postTypeCode,
-        handlePostDelete,
-        index,
-        post: {
-            id,
-            created,
-            amount_of_hearts,
-            logged_in_user_liked,
-            is_from_logged_in_user,
-            amount_of_comments,
-            content,
-            logo,
-            avatar,
-            name,
-        },
-    } = props;
-
-    const dispatch = useDispatch()
+const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
-    const [isDropDown, toggleDropDown] = useState(false);
-    const [isModal, setUPModal] = useState(false);
-    const [commentsData, setComments] = useState({
-        showComments: false,
-        commentsList: null,
-        content: ``,
-    })
-    const handleDeleteComment = (e) => {
-        const ID = Number(e.currentTarget.id)
-        dispatch(deleteCommentAction(ID))
-        const newCommentsList = commentsData.commentsList
-        const updatedComments = newCommentsList.filter(comment => comment.id !== ID)
-        setComments({...commentsData, commentsList: updatedComments})
-    };
-
-    const handleCloseModal = () => {
-        setUPModal(!isModal);
-    };
-
-    const handleToggle = () => {
-        toggleDropDown(!isDropDown);
-    };
-    const handleCloseDropDown = (e) => {
-        toggleDropDown(!isDropDown);
-        handlePostDelete(e);
-    };
+    const [showComments, setShowComments] = useState(false)
+    const [commentData, setCommentData] = useState(``)
+    const [amountOfHearts, setAmountOfHearts] = useState(amount_of_hearts)
+    const [localComments, setLocalComments] = useState(comments)
 
 
-    const handleLike = (e) => {
-        const ID = Number(e.currentTarget.id);
-        if (postTypeCode === 4) {
-            dispatch(likeProfilePostsAction(ID));
-        } else {
-            dispatch(likePostAction(ID, postTypeCode));
-        }
+    const handleHeart = () => {
+        const newAmount = amountOfHearts + 1
+        setAmountOfHearts(newAmount)
     };
-
-    const handleRenderComments = async (e) => {
-        if (commentsData.showComments === false) {
-            setComments({
-                ...commentsData, commentsList: response.data,
-                showComments: !commentsData.showComments
-            })
-        } else {
-            setComments({
-                showComments: false,
-                commentsList: null,
-                content: ``,
-            })
-        }
-    }
-    console.log(commentsData)
 
     const handleNewComment = e => {
         const value = e.currentTarget.value;
-        setComments({...commentsData, content: value});
+        setCommentData(value);
     }
 
     const submitComment = async (e) => {
         e.preventDefault();
         console.log("in the submit!")
-        const response = await dispatch(createCommentAction(id, {content: commentsData.content}))
-        setComments({...commentsData, commentsList: [response.data, ...commentsData.commentsList], content: ``})
-
+        const newComment = {
+            id: shortid.generate(),
+            name: "Max Voss",
+            created: new Date(),
+            amount_of_likes: smallRand(),
+            avatar: `https://i.pravatar.cc/150?img=${rand()}`,
+            content: commentData
+        }
+        setLocalComments([...newComment, ...localComments])
     }
 
     const timeAgo = dayjs(created).fromNow();
-
-    const renderDropDown = (
-        <PostDropDown>
-            <button
-                onClick={() => {
-                    handleToggle();
-                    handleCloseModal();
-                }}
-            >
-                <img src={editPic} alt={"edit post"}/>
-                Edit
-            </button>
-            <button className={index} id={id} onClick={handleCloseDropDown}>
-                <img alt={"delete post"} src={deletePic}/>
-                Delete
-            </button>
-        </PostDropDown>
-    );
 
     return (
         <UserPostContainer>
