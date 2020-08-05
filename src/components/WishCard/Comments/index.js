@@ -82,24 +82,24 @@ const Comments = ({comments, handleNewComment, submitComment, content, showComme
     let renderComments = comments.map((comment, index) => {
 
         return (
-                <Fade collapse>
-            <CommentDiv key={index}>
-                <HeaderDiv>
-                    <AvaNameTimeDiv>
-                        <AvatarDiv>
-                            <DefaultAvaSmall src={comment.avatar}/>
-                        </AvatarDiv>
-                        <NameTimeDiv>
-                            <Name>{comment.name}</Name>
-                            <Time>{getTimeAgo(comment.created)}</Time>
-                        </NameTimeDiv>
-                    </AvaNameTimeDiv>
-                </HeaderDiv>
-                <ContentDiv>
-                    <p>{comment.content}</p>
-                </ContentDiv>
-            </CommentDiv>
-                     </Fade>
+            <Fade collapse>
+                <CommentDiv key={index}>
+                    <HeaderDiv>
+                        <AvaNameTimeDiv>
+                            <AvatarDiv>
+                                <DefaultAvaSmall src={comment.avatar}/>
+                            </AvatarDiv>
+                            <NameTimeDiv>
+                                <Name>{comment.name}</Name>
+                                <Time>{getTimeAgo(comment.created)}</Time>
+                            </NameTimeDiv>
+                        </AvaNameTimeDiv>
+                    </HeaderDiv>
+                    <ContentDiv>
+                        <p>{comment.content}</p>
+                    </ContentDiv>
+                </CommentDiv>
+            </Fade>
         )
     })
 
@@ -107,13 +107,13 @@ const Comments = ({comments, handleNewComment, submitComment, content, showComme
     return (
         <CommentsContainer>
 
-                {renderComments}
+            {renderComments}
 
-                <InputDiv>
-                    <Input onResize={(e) => {
-                    }} value={content} onChange={handleNewComment}/>
-                    <PostComment onClick={submitComment}>Post</PostComment>
-                </InputDiv>
+            <InputDiv>
+                <Input onResize={(e) => {
+                }} value={content} onChange={handleNewComment}/>
+                <PostComment onClick={submitComment}>Post</PostComment>
+            </InputDiv>
         </CommentsContainer>
     )
 }

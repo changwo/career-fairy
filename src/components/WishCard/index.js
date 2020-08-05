@@ -127,8 +127,9 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
             avatar: `https://i.pravatar.cc/150?img=${rand()}`,
             content: commentData
         }
-        console.log("newcomment", newComment)
-        setLocalComments([newComment, ...localComments])
+        const newLocalComments = [...localComments, newComment]
+        setLocalComments(newLocalComments)
+        console.log(localComments)
         setCommentData("")
     }
 
