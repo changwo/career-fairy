@@ -10,7 +10,7 @@ const PageContainer = styled.div`
   height: 100vh;
   width: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 `
 
 const InnerPage = styled.div`
@@ -26,12 +26,10 @@ const LeftPage = styled.div`
   width: 30%;
   display: flex;
   justify-content: center;
-  border: 1px solid red;
 `
 
 const RightPage = styled.div`
-width: 65%;
-  border: 1px solid blue;
+  width: 65%;
 `
 
 

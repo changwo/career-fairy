@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import {DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
+import {DefaultAvaLarge, DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
 import {WishCardContainer} from "../../style/GlobalContainers";
 import Carousel from "../Carousel";
 import Comments from "./Comments";
@@ -23,6 +23,10 @@ const DefaultDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const LogoDiv = styled(DefaultDiv)`
+  grid-area: logo;
+`
 
 export const WishNameTimeDiv = styled(DefaultDiv)`
   width: 100%;
@@ -105,7 +109,9 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
 
     return (
         <WishCardContainer>
-            <DefaultAvaSmall src={avatar}/>
+            <LogoDiv>
+                <DefaultAvaLarge src={logo}/>
+            </LogoDiv>
             <WishNameTimeDiv>
                 <p>{name}</p>
                 <p>{timeAgo}</p>
@@ -119,8 +125,9 @@ const WishCard = ({wish: {id, logo, name, created, amount_of_hearts, avatar, con
                 <p>{amountOfHearts}</p>
             </WishLikeShareDiv>
             <AmountCommentsDiv>
-                <CommentLink onClick={() => setShowComments(true)}>
-                    <p>{localComments.length ? `${localComments.length} Comments` : "Be the first to comment"}</p>
+                <CommentLink onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
+                    {showComments ? <p>Hide Comments</p> :
+                        <p>{localComments.length ? `${localComments.length} Comments` : "Be the first to comment"}</p>}
                 </CommentLink>
             </AmountCommentsDiv>
             <WishLikeCountDiv>

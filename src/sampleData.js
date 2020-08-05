@@ -19,8 +19,9 @@ const smallRand = () => {
 export const sampleWishes = [
     {
         id: shortid.generate(),
-        logo: `https://picsum.photos/id/237/200/300`,
+        logo: `https://logo.clearbit.com/ubs.com`,
         name: "Erick Flint",
+        companyName: "UBS",
         created: new Date(),
         amount_of_hearts: smallRand(),
         avatar: `https://i.pravatar.cc/150?img=${rand()}`,
@@ -63,8 +64,9 @@ export const sampleWishes = [
     },
     {
         id: shortid.generate(),
-        logo: `https://picsum.photos/id/237/200/300`,
+        logo: `https://logo.clearbit.com/apple.com`,
         name: "Adam Corola",
+        companyName: "Apple",
         created: new Date(),
         amount_of_hearts: smallRand(),
         avatar: `https://i.pravatar.cc/150?img=${rand()}`,
@@ -94,8 +96,9 @@ export const sampleWishes = [
     },
     {
         id: shortid.generate(),
-        logo: `https://picsum.photos/id/237/200/300`,
-        name: "Jesica Smith",
+        logo: `https://logo.clearbit.com/facebook.com`,
+        name: "FaceBook",
+        companyName: "",
         created: new Date(),
         amount_of_hearts: smallRand(),
         avatar: `https://i.pravatar.cc/150?img=${rand()}`,
@@ -145,8 +148,9 @@ export const sampleWishes = [
     },
     {
         id: shortid.generate(),
-        logo: `https://picsum.photos/id/237/200/300`,
+        logo: `https://logo.clearbit.com/ebay.com`,
         name: "Alex Holmes",
+        companyName: "ebay",
         created: new Date(),
         amount_of_hearts: smallRand(),
         avatar: `https://i.pravatar.cc/150?img=${rand()}`,

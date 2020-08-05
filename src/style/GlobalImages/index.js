@@ -10,6 +10,10 @@ export const DefaultAvaSmall = styled.img`
   margin: 0;
 `;
 
+export const DefaultAvaLarge = styled(DefaultAvaSmall)`
+  height: 60px;
+  width: 60px;
+`;
 export const WishHeartImg = styled.img`
   width: 22px;
   height: 22px;
