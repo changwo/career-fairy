@@ -34,11 +34,14 @@ export const WishNameTimeDiv = styled(DefaultDiv)`
   flex-direction: column;
   align-items: flex-start;
   grid-area: nameTime;
+  p{
+    color: #808080;
+  }
 `;
 
 const WishTextDiv = styled(DefaultDiv)`
   justify-content: flex-start;
-  padding: 0 1rem 0 1rem;
+  padding: 0 5px 0 5px;
   grid-area: c;
   p{
     white-space: pre-line;
@@ -117,17 +120,14 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                 <DefaultAvaLarge src={logo}/>
             </LogoDiv>
             <WishNameTimeDiv>
-                <p>{companyName}</p>
+                <h1>{companyName}</h1>
                 <p>{timeAgo}</p>
             </WishNameTimeDiv>
             <WishTextDiv>
                 <p>{content}</p>
             </WishTextDiv>
             <WishImageDiv>{logo.length ? <Carousel images={logo}/> : null}</WishImageDiv>
-            <WishLikeShareDiv>
-                <WishHeartImg onClick={handleHeart}/>
-                <p>{amountOfHearts}</p>
-            </WishLikeShareDiv>
+
             <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
                 {showComments ? <p>Hide Comments</p> :
                     (localComments.length ? <>

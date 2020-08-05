@@ -9,7 +9,7 @@ import {BaseButton} from "../../../style/GlobalButtons";
 
 const CommentsContainer = styled.div`
 grid-area: comments;
-padding: 10px;
+  padding: 10px 10px 0 10px;
 `
 const CommentDiv = styled.div`
   
@@ -41,9 +41,12 @@ const ContentDiv = styled.div`
 const AvatarDiv = styled.div`
 `
 const InputDiv = styled.form`
-display: flex;
-justify-content: center;
-align-items: center;
+  border-top: 1px solid rgba(128,128,128,0.32);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const AvaNameTimeDiv = styled.div`
@@ -56,10 +59,11 @@ const PostComment = styled(BaseButton)`
 width: 5rem;
 height: 2rem;
 padding: 5px;
+margin-left: 0.3rem;
 `
 const Input = styled(TextareaAutosize)`
 padding: 0.5rem;
-border-radius: 30px;
+border-radius: 20px;
 display: flex;
 width: 100%;
 resize: none;
