@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import upload from '../../assets/upload.png'
+import logoPlaceHolder from '../../assets/logo-placeholder.png'
 import {BaseButton} from "../../style/GlobalButtons";
+import {rand, smallRand} from "../../sampleData";
+import {useDispatch} from "react-redux";
+import {addWish} from "../../store/actions";
 
-const Container = styled.div`
+const shortid = require("shortid");
+
+
+const Container = styled.form`
   background-color: ${(props) => props.theme.fairyGreen};
   color: white;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0,0,0,0.2);
@@ -51,7 +58,7 @@ const CreateButton = styled(BaseButton)`
 const MiddleArea = styled(BaseInputArea)`
    height: 200px;
      label {
-    color: #ffffff;
+    color: #999999;
     font-size: 20px;
   }
 `
@@ -105,26 +112,63 @@ const CompInput = styled(BaseInput)`
 
 
 const WishBox = (props) => {
+    const dispatch = useDispatch()
+    const [wishData, setWishData] = useState({
+        companyName: "",
+        content: "",
+        logo: null,
+    })
 
+    const submitWish = (e) => {
+        e.preventDefault();
+        console.log("in the submit!")
+        const newWish = {
+            id: shortid.generate(),
+            name: "Max Voss",
+            created: new Date(),
+            amount_of_hearts: smallRand(),
+            avatar: `https://i.pravatar.cc/150?img=${rand()}`,
+            logo: wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder,
+            companyName: wishData.companyName,
+            content: wishData.content,
+            comments: []
+        }
+        dispatch(addWish(newWish))
+        setWishData({
+            companyName: "",
+            content: "",
+            logo: null,
+        })
+    }
+
+    const onChangeHandler = (event, property) => {
+        const value = event.currentTarget.value;
+        setWishData({...wishData, [property]: value});
+    };
+
+    const logoSelectHandler = e => {
+        if (e.target.files[0]) {
+            setWishData({...wishData, logo: e.target.files[0]})
+        }
+    }
 
     return (
-        <Container>
+        <Container onSubmit={submitWish}>
             <h1>Wish for a Company</h1>
             <TopArea>
                 <label htmlFor="name">Company Name:</label>
-                <CompInput id="name"/>
+                <CompInput required onChange={(e) => onChangeHandler(e, "companyName")} id="name"/>
             </TopArea>
             <MiddleArea>
-                <label htmlFor="name">Why Company name?</label>
-                <AboutCompany rows={15}/>
+                <label htmlFor="content">{wishData.companyName ? `Why ${wishData.companyName}?` : null}</label>
+                <AboutCompany required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
             </MiddleArea>
             <BottomArea>
                 <LabelDiv>
                     <Upload src={upload}/>
-                    <UploadLabel htmlFor="logo">LOGO</UploadLabel>
-                    <FileInput type="file" id="logo"/>
+                    <UploadLabel htmlFor="logo">{wishData.logo ? "UPLOADED" : "LOGO"}</UploadLabel>
+                    <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
                 </LabelDiv>
-
                 <div>
                     <CreateButton>
                         CREATE<br/>WISH
@@ -134,5 +178,6 @@ const WishBox = (props) => {
         </Container>
     )
 }
+
 
 export default WishBox

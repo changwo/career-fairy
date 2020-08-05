@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 
-import { videoReducer } from "./videoReducer";
+import { wishReducer } from "./wishReducer";
 
 export const rootReducer = combineReducers({
-    videoReducer,
+    wishReducer: wishReducer,
 });

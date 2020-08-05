@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import styled from "styled-components";
 import NavBar from "../NavBar";
@@ -33,7 +33,8 @@ const RightPage = styled.div`
 `
 
 
-const Home = ({videoReducer: {data}}) => {
+const Home = ({wishReducer: {wishes}}) => {
+    console.log(wishes);
 
 
     return (
@@ -44,10 +45,9 @@ const Home = ({videoReducer: {data}}) => {
                     <WishBox/>
                 </LeftPage>
                 <RightPage>
-                    {sampleWishes.map(wish => {
+                    {wishes ? wishes.map(wish => {
                         return <WishCard key={wish.id} wish={wish}/>
-                    })}
-
+                    }) : null}
                 </RightPage>
 
             </InnerPage>
@@ -56,8 +56,9 @@ const Home = ({videoReducer: {data}}) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        videoReducer: state.videoReducer,
+        wishReducer: state.wishReducer,
     };
 };
 

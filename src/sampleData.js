@@ -8,11 +8,11 @@ export const getTimeAgo = (stamp) => {
 
 const shortid = require("shortid");
 
-const rand = () => {
+export const rand = () => {
     return Math.floor(Math.random() * 60) + 1
 }
 
-const smallRand = () => {
+export const smallRand = () => {
     return Math.floor(Math.random() * 40) + 1
 }
 

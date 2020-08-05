@@ -7,8 +7,6 @@ import commentIcon from '../../assets/comment.png'
 import {WishCardContainer} from "../../style/GlobalContainers";
 import Comments from "./Comments";
 import RubberBand from 'react-reveal/RubberBand';
-
-
 const shortid = require("shortid");
 
 const rand = () => {
