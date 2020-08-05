@@ -23,13 +23,14 @@ const WishCard = (props) => {
         post: {
             id,
             created,
-            amount_of_likes,
+            amount_of_hearts,
             logged_in_user_liked,
             is_from_logged_in_user,
             amount_of_comments,
             content,
-            images,
-            user: {first_name, last_name, avatar, id: userID},
+            logo,
+            avatar,
+            name,
         },
     } = props;
 
@@ -154,7 +155,7 @@ const WishCard = (props) => {
                 <p>{amount_of_comments ? `${amount_of_comments} Comments` : "Be the first to comment"}</p>
             </CommentLink></AmountCommentsDiv>
             <UserPostLikeCountDiv>
-                <UserPostText>{amount_of_likes} likes</UserPostText>
+                <UserPostText>{amount_of_hearts} hearts</UserPostText>
             </UserPostLikeCountDiv>
             {commentsData.showComments ?
                 <Comments handleDeleteComment={handleDeleteComment} content={commentsData.content} id={id}
