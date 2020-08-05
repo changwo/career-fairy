@@ -1,4 +1,10 @@
-import {v4 as uuidv4} from 'uuid';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+export const getTimeAgo = (stamp) => {
+    return dayjs(stamp).fromNow();
+}
 
 const shortid = require("shortid");
 
