@@ -8,6 +8,7 @@ import {WishCardContainer} from "../../style/GlobalContainers";
 import Comments from "./Comments";
 import RubberBand from 'react-reveal/RubberBand';
 import Zoom from "react-reveal/Zoom";
+import Fade from "react-reveal/Fade";
 
 const shortid = require("shortid");
 
@@ -148,7 +149,7 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
     const timeAgo = dayjs(created).fromNow();
 
     return (
-        <Zoom right>
+        <Fade right>
             <WishCardContainer>
                 <WishLikeCountDiv>
                     <Animate wait={0} delay={0} spy={amountOfHearts}>
@@ -190,7 +191,7 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                               comments={localComments}/>
                     : null}
             </WishCardContainer>
-        </Zoom>
+        </Fade>
     )
 }
 

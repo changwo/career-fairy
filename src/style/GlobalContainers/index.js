@@ -12,7 +12,7 @@ export const WishCardContainer = styled.div`
   grid-template-rows: minmax(60px, 5%) minmax(10px, auto) minmax(0, auto);
   border-radius: 5px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0,0,0,0.2);
-  max-width: 1050px;
+  width: 100%;
   min-width: 375px;
   
   background-color: white;
