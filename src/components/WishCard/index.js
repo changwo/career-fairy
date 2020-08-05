@@ -57,12 +57,8 @@ const WishLikeShareDiv = styled(DefaultDiv)`
 const AmountCommentsDiv = styled(DefaultDiv)`
   grid-area: commentCount;
   cursor: pointer;
-  
+    
 `;
-
-const CommentLink = styled.a`
-  cursor: pointer;
-`
 
 const WishLikeCountDiv = styled(DefaultDiv)`
   grid-area: likeCount;
@@ -72,7 +68,8 @@ const WishLikeCountDiv = styled(DefaultDiv)`
 `;
 
 const CommentImg = styled.img`
-  
+   width: 20px;
+   height: 20px;
 `
 
 const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
@@ -129,8 +126,11 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                 <p>{amountOfHearts}</p>
             </WishLikeShareDiv>
             <AmountCommentsDiv onClick={showComments ? () => setShowComments(false) : () => setShowComments(true)}>
-                    {showComments ? <p>Hide Comments</p> :
-                        (localComments.length ? <><p>{localComments.length} </p> <CommentImg alt="comment icon" src={commentIcon}/> </>: "Be the first to comment")}
+                {showComments ? <p>Hide Comments</p> :
+                    (localComments.length ? <>
+                        <CommentImg alt="comment icon" src={commentIcon}/>
+                        <p>{localComments.length} </p>
+                    </> : "Be the first to comment")}
             </AmountCommentsDiv>
             <WishLikeCountDiv>
                 <WishHeartImg onClick={handleHeart}/>
