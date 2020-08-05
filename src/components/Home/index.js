@@ -99,7 +99,6 @@ const Home = ({wishReducer: {wishes}}) => {
     const [search, setSearch] = useState("")
     const [showDrop, setShowDrop] = useState(false)
     const [sortBy, setSortBy] = useState("")
-    console.log(showDrop);
 
     const handleSelect = (e) => {
         const value = e.currentTarget.id;
@@ -107,9 +106,31 @@ const Home = ({wishReducer: {wishes}}) => {
         setSortBy(value)
     }
 
-    const handleFilterWishes = () => {
+    const dynamicSort = (property) => {
+        let sortOrder = 1;
+        if (property[0] === "-") {
+            sortOrder = -1;
+            property = property.substr(1);
+        }
+        return (a, b) => {
+            /* next line works with strings and numbers,
+             * and you may want to customize it to your needs
+             */
+            let result
+            if (property === "comments") result = (a[property].length > b[property].length) ? -1 : (a[property].length < b[property].length) ? 1 : 0;
+            else result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+            return result * sortOrder;
+        }
+    }
 
-        return wishes.map((wish) => {
+
+    const handleFilterWishes = () => {
+        let newWishes = wishes
+        if (sortBy === "Top") newWishes.sort(dynamicSort("amount_of_hearts"))
+        if (sortBy === "New") newWishes.sort(dynamicSort("created"))
+        if (sortBy === "Trending") newWishes.sort(dynamicSort("comments"))
+
+        return newWishes.map((wish) => {
             if (
                 wish.name.toLowerCase().includes(search.toLowerCase()) ||
                 wish.companyName.toLowerCase().includes(search.toLowerCase()) ||
@@ -139,11 +160,13 @@ const Home = ({wishReducer: {wishes}}) => {
                         <label htmlFor="search">Search:</label>
                         <FilterInput onChange={handleSearch} value={search} id="search"/>
                         <Dropdown>
-                            <DropBtn onClick={e => setShowDrop(!showDrop)}>Sort by</DropBtn>
+                            <DropBtn
+                                onClick={e => setShowDrop(!showDrop)}>{sortBy.length ? sortBy : "Sort by"}</DropBtn>
                             <DropContent active={showDrop}>
-                                <li onClick={handleSelect} id="top">Top</li>
-                                <li onClick={handleSelect} id="new">New</li>
-                                <li onClick={handleSelect} id="trending">Trending</li>
+                                <li onClick={handleSelect} id="Top">Top</li>
+                                <li onClick={handleSelect} id="New">New</li>
+                                <li onClick={handleSelect} id="Trending">Trending</li>
+                                <li onClick={handleSelect} id="All">All</li>
                             </DropContent>
                         </Dropdown>
                     </FilterDiv>
