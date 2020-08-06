@@ -150,7 +150,13 @@ const WishBox = (props) => {
 
     const logoSelectHandler = e => {
         if (e.target.files[0]) {
-            setWishData({...wishData, logo: e.target.files[0], logoUrl: URL.createObjectURL(e.target.files[0])})
+            setWishData(
+                {
+                    ...wishData,
+                    logo: e.target.files[0],
+                    logoUrl: URL.createObjectURL(e.target.files[0])
+                }
+            )
         }
     }
 
@@ -160,11 +166,13 @@ const WishBox = (props) => {
                 <h1>Wish for a Company</h1>
                 <TopArea>
                     <label htmlFor="name">Company Name:</label>
-                    <CompInput value={wishData.companyName} required onChange={(e) => onChangeHandler(e, "companyName")} id="name"/>
+                    <CompInput value={wishData.companyName} required onChange={(e) => onChangeHandler(e, "companyName")}
+                               id="name"/>
                 </TopArea>
                 <MiddleArea>
                     <label htmlFor="content">{wishData.companyName ? `Why ${wishData.companyName}?` : null}</label>
-                    <AboutCompany value={wishData.content} required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
+                    <AboutCompany value={wishData.content} required onChange={(e) => onChangeHandler(e, "content")}
+                                  id="content" rows={15}/>
                 </MiddleArea>
                 <LabelDiv>
                     <LogoDiv
