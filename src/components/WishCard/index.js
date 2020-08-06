@@ -92,7 +92,8 @@ const GreenOval = styled.div`
     padding-right: 0.5rem;
   }
 `
-const Animate = styled(RubberBand)`
+// Another example of the power of styled-components. You are able to style components from other libraries :)
+const Animate = styled(RubberBand)` 
   height: 100%;
   width: 100%;
 `
