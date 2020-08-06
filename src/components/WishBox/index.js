@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import upload from '../../assets/upload.png'
 import logoPlaceHolder from '../../assets/logo-placeholder.png'
 import {BaseButton} from "../../style/GlobalButtons";
 import {rand, smallRand} from "../../sampleData";
@@ -12,14 +11,14 @@ const shortid = require("shortid");
 
 
 const Container = styled.form`
-  background-color: white;
+  background-color: ${props => props.theme.fairyGreenLight};
   border: 1px solid ${props => props.theme.fairyGreenLight};
   color: white;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0,0,0,0.2);
   padding: 20px;
   border-radius: 10px;
   width: 350px;
-  height: 500px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,16 +36,9 @@ const BaseInputArea = styled.div`
    border: 2px solid #bebebe;
    padding: 10px;
 `
-
-const Upload = styled.img`
-  cursor: pointer;
-`
-
 const FileInput = styled.input`
   display: none;
 `
-
-
 const TopArea = styled(BaseInputArea)`
   margin-top: 10px;
   label {
@@ -73,23 +65,11 @@ export const AboutCompany = styled.textarea`
   resize: none;
   outline: none;
   padding-top: 1rem;
-
-  
 `;
 
-const BottomArea = styled.div`
-   height: 200px;
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   align-items: center;
-`
-
 const LabelDiv = styled.div`
-  height: 150px;
+  height: 170px;
   width: 150px;
-  // border: 1px solid ${(props) => props.theme.fairyGreen};
   color: white;
   border: 2px solid #bebebe;
   display: flex;
@@ -98,21 +78,28 @@ const LabelDiv = styled.div`
   align-items: center;
   font-weight: bold;
   border-radius: 5px;
-  cursor: pointer;
 `
 
 const UploadLabel = styled.label`
 font-size: 1rem;
 color: white;
 text-align: center;
-cursor: pointer;
 background-color: ${(props) => props.theme.fairyGreen};
   width: 100%;
       border: 1px solid ${props => props.theme.fairyGreen};
-    :hover,:focus{
+   :hover,:focus{
+    cursor: pointer;
     background-color: white;
     color:${props => props.theme.fairyGreen};
   }
+`
+const LogoDiv = styled.div`
+  display: flex;
+  height: 100%;
+  width: 100%;
+    background-size: contain;
+
+  
 `
 
 
@@ -174,18 +161,12 @@ const WishBox = (props) => {
                 <label htmlFor="content">{wishData.companyName ? `Why ${wishData.companyName}?` : null}</label>
                 <AboutCompany required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
             </MiddleArea>
-            <BottomArea>
-
-                <LabelDiv  style={{'background-image': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder}")`}}>
-                    <UploadLabel htmlFor="logo">{wishData.logo ? "UPLOADED" : "UPLOAD LOGO"}</UploadLabel>
-                    <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
-                </LabelDiv>
-                <div>
-                    <CreateButton>
-                        CREATE
-                    </CreateButton>
-                </div>
-            </BottomArea>
+            <LabelDiv>
+                <LogoDiv style={{'backgroundImage': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder}")`}}/>
+                <UploadLabel htmlFor="logo">{wishData.logo ? "CHANGE" : "UPLOAD"}</UploadLabel>
+                <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
+            </LabelDiv>
+            <CreateButton>CREATE</CreateButton>
         </Container>
     )
 }
