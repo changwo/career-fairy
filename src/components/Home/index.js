@@ -26,12 +26,11 @@ const LeftPage = styled.div`
 
 const RightPage = styled.div`
   width: 50%;
-
 `
 const FilterInput = styled(BaseInput)`
   border: 2px solid ${props => props.theme.fairyGreen};
   border-radius: 5px;
-   margin-right: 0.4rem;
+  margin-right: 0.4rem;
   width: 100%;
 `
 

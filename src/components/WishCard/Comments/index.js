@@ -1,28 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-
+import Fade from 'react-reveal/Fade';
 import TextareaAutosize from 'react-autosize-textarea';
-import {getTimeAgo} from "../../../sampleData";
+
 import {CollapseArrow, DefaultAvaSmall} from "../../../style/GlobalImages";
 import {BaseButton} from "../../../style/GlobalButtons";
-import Fade from 'react-reveal/Fade';
+import {getTimeAgo} from "../../../sampleData";
 
 
 const CommentsContainer = styled.div`
   grid-area: comments;
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
   padding: 10px 10px 0 10px;
 `
 const CommentDiv = styled.div`
-  
   width: 100%;
   min-width: 375px;
   margin-top: 1rem;
   border-top: 1px solid rgba(128,128,128,0.32);
 `
 const NameTimeDiv = styled.div`
-margin: 10px;
+  margin: 10px;
 `
 const HeaderDiv = styled.div`
   display: flex;
@@ -77,10 +76,9 @@ const Input = styled(TextareaAutosize)`
 `
 
 
-const Comments = ({comments, handleNewComment, submitComment, content, handleCollapse, showComments}) => {
+const Comments = ({comments, handleNewComment, submitComment, content, handleCollapse}) => {
 
     let renderComments = comments.map(comment => {
-
         return (
             <Fade key={comment.id} collapse>
                 <CommentDiv>
@@ -106,10 +104,7 @@ const Comments = ({comments, handleNewComment, submitComment, content, handleCol
 
     return (
         <CommentsContainer name="COMMENTS">
-
             {renderComments}
-
-
             <InputDiv>
                 <Input onResize={(e) => {
                 }} value={content} onChange={handleNewComment}/>

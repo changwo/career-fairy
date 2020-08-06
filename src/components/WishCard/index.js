@@ -38,7 +38,7 @@ export const WishNameTimeDiv = styled(DefaultDiv)`
 `;
 
 const AuthorDiv = styled.div`
-display: flex;
+  display: flex;
   align-items: center;
 `
 
@@ -48,7 +48,6 @@ const WishTextDiv = styled(DefaultDiv)`
   grid-area: c;
   p{
     white-space: pre-line;
-    
   }
 `;
 
@@ -172,8 +171,7 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
                         </> : "Be the first to comment")}
                 </AmountCommentsDiv>
                 {showComments ?
-                    <Comments content={commentData} id={id}
-                              showComments={showComments}
+                    <Comments content={commentData}
                               submitComment={submitComment}
                               handleNewComment={handleNewComment}
                               handleCollapse={handleCollapse}
