@@ -61,7 +61,7 @@ const PostComment = styled(BaseButton)`
     width: 5rem;
     height: 2rem;
     padding: 5px;
-    margin: 0 0.3rem;
+    margin: 0 0 0 0.3rem;
 `
 const Input = styled(TextareaAutosize)`
     padding: 0.5rem 1rem;
@@ -103,12 +103,12 @@ const Comments = ({comments, handleNewComment, submitComment, content, handleCol
 
 
     return (
-        <CommentsContainer name="COMMENTS">
+        <CommentsContainer>
             {renderComments}
             <InputDiv>
                 <Input onResize={(e) => {
                 }} value={content} onChange={handleNewComment}/>
-                <PostComment onClick={submitComment}>Post</PostComment>
+                {content.length? <Fade duration={100} right><PostComment onClick={submitComment}>Post</PostComment></Fade>: null}
                 <CollapseArrow onClick={handleCollapse}/>
             </InputDiv>
         </CommentsContainer>

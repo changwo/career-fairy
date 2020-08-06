@@ -11,8 +11,8 @@ export const BaseButton = styled.button`
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-    border: 1px solid ${props => props.theme.fairyGreen};
-    :hover,:focus{
+  border: 1px solid ${props => props.theme.fairyGreen};
+  :hover,:focus{
     background-color: white;
     color:${props => props.theme.fairyGreen};
   }

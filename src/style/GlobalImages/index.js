@@ -33,4 +33,5 @@ export const CollapseArrow = styled.img`
   height: 32px;
   content: url(${collapseArrow});
   cursor: pointer;
+  margin-left: 0.3rem;
 `;
