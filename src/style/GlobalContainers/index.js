@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+
+// This is an example case of storing a wrapper u would like to use on multiple different components
+
 export const WishCardContainer = styled.div`
   margin-bottom: 10px;
   display: grid;

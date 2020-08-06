@@ -98,12 +98,12 @@ const Animate = styled(RubberBand)`
 `
 
 
-const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
+const WishCard = ({wish: {logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
     const [showComments, setShowComments] = useState(false)
     const [commentData, setCommentData] = useState(``)
-    const [amountOfHearts, setAmountOfHearts] = useState(amount_of_hearts)
-    const [localComments, setLocalComments] = useState(comments)
+    const [amountOfHearts, setAmountOfHearts] = useState(amount_of_hearts) // Threw this in local state instead of the reducer just for quick manipulations
+    const [localComments, setLocalComments] = useState(comments)           // Would normally all be done through the async API calls and redux
 
     const handleHeart = () => {
         const newAmount = amountOfHearts + 1
@@ -129,12 +129,12 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
             avatar: `https://i.pravatar.cc/150?img=${rand()}`,
             content: commentData
         }
-        const newLocalComments = [...localComments, newComment]
+        const newLocalComments = [...localComments, newComment] // Could use a push here, but I prefer using spread operators when dealing with State
         setLocalComments(newLocalComments)
         setCommentData("")
     }
 
-    const timeAgo = dayjs(created).fromNow();
+    const timeAgo = dayjs(created).fromNow(); // Converts time-stamps into a "time ago" format like you see on many social media websites
 
     return (
         <Fade right>

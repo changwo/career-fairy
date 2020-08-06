@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import {BaseButton} from "../../style/GlobalButtons";
 
+// Very basic Navbar just to get a feel for the website
+//
+
 const Nav = styled.div`
   width: 95%;
   height: 10%;

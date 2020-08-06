@@ -6,6 +6,9 @@ import WishBox from "../WishBox";
 import WishCard from "../WishCard";
 import {BaseInput} from "../../style/GlobalInputs";
 
+// All styling is done in my component files thanks to styled-components. Allowing me to write SASS SCSS in Javascript.
+// This also helps keep the folders clean :)
+
 const PageContainer = styled.div`
   height: 100vh;
   width: 100%;

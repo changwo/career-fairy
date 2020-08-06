@@ -123,7 +123,7 @@ const WishBox = (props) => {
             created: new Date(),
             amount_of_hearts: smallRand(),
             avatar: `https://i.pravatar.cc/150?img=${rand()}`,
-            logo: wishData.logoUrl ? wishData.logoUrl : logoPlaceHolder,
+            logo: wishData.logoUrl || logoPlaceHolder, // simple and clean operator to handle placeholders
             companyName: wishData.companyName,
             content: wishData.content,
             comments: []

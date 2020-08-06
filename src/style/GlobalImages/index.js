@@ -2,6 +2,8 @@ import styled from "styled-components";
 import greenHeart from '../../assets/green_heart.png'
 import collapseArrow from '../../assets/collapse-arrow.png'
 
+// This will be my base CSS style for all the images I will use, they will inherit from this Base and build upon it
+
 
 export const DefaultAvaSmall = styled.img`
   cursor: pointer;
