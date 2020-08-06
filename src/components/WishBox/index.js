@@ -6,12 +6,13 @@ import {rand, smallRand} from "../../sampleData";
 import {useDispatch} from "react-redux";
 import {addWish} from "../../store/actions";
 import {BaseInput} from "../../style/GlobalInputs";
+import Fade from "react-reveal/Fade";
 
 const shortid = require("shortid");
 
 
 const Container = styled.form`
-  background-color: ${props => props.theme.fairyGreenLight};
+  background-color: white;
   border: 1px solid ${props => props.theme.fairyGreenLight};
   color: white;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0,0,0,0.2);
@@ -151,23 +152,26 @@ const WishBox = (props) => {
     }
 
     return (
-        <Container onSubmit={submitWish}>
-            <h1>Wish for a Company</h1>
-            <TopArea>
-                <label htmlFor="name">Company Name:</label>
-                <CompInput required onChange={(e) => onChangeHandler(e, "companyName")} id="name"/>
-            </TopArea>
-            <MiddleArea>
-                <label htmlFor="content">{wishData.companyName ? `Why ${wishData.companyName}?` : null}</label>
-                <AboutCompany required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
-            </MiddleArea>
-            <LabelDiv>
-                <LogoDiv style={{'backgroundImage': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder}")`}}/>
-                <UploadLabel htmlFor="logo">{wishData.logo ? "CHANGE" : "UPLOAD"}</UploadLabel>
-                <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
-            </LabelDiv>
-            <CreateButton>CREATE</CreateButton>
-        </Container>
+        <Fade bottom>
+            <Container onSubmit={submitWish}>
+                <h1>Wish for a Company</h1>
+                <TopArea>
+                    <label htmlFor="name">Company Name:</label>
+                    <CompInput required onChange={(e) => onChangeHandler(e, "companyName")} id="name"/>
+                </TopArea>
+                <MiddleArea>
+                    <label htmlFor="content">{wishData.companyName ? `Why ${wishData.companyName}?` : null}</label>
+                    <AboutCompany required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
+                </MiddleArea>
+                <LabelDiv>
+                    <LogoDiv
+                        style={{'backgroundImage': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder}")`}}/>
+                    <UploadLabel htmlFor="logo">{wishData.logo ? "CHANGE" : "UPLOAD"}</UploadLabel>
+                    <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
+                </LabelDiv>
+                <CreateButton>CREATE</CreateButton>
+            </Container>
+        </Fade>
     )
 }
 
