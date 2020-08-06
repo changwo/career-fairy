@@ -117,6 +117,7 @@ const WishBox = (props) => {
         companyName: "",
         content: "",
         logo: null,
+        logoUrl: null,
     })
 
     const submitWish = (e) => {
@@ -128,7 +129,7 @@ const WishBox = (props) => {
             created: new Date(),
             amount_of_hearts: smallRand(),
             avatar: `https://i.pravatar.cc/150?img=${rand()}`,
-            logo: wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder2,
+            logo: wishData.logoUrl ? wishData.logoUrl : logoPlaceHolder2,
             companyName: wishData.companyName,
             content: wishData.content,
             comments: []
@@ -138,6 +139,7 @@ const WishBox = (props) => {
             companyName: "",
             content: "",
             logo: null,
+            logoUrl: null
         })
     }
 
@@ -148,7 +150,7 @@ const WishBox = (props) => {
 
     const logoSelectHandler = e => {
         if (e.target.files[0]) {
-            setWishData({...wishData, logo: e.target.files[0]})
+            setWishData({...wishData, logo: e.target.files[0], logoUrl: URL.createObjectURL(e.target.files[0])})
         }
     }
 
@@ -158,15 +160,15 @@ const WishBox = (props) => {
                 <h1>Wish for a Company</h1>
                 <TopArea>
                     <label htmlFor="name">Company Name:</label>
-                    <CompInput required onChange={(e) => onChangeHandler(e, "companyName")} id="name"/>
+                    <CompInput value={wishData.companyName} required onChange={(e) => onChangeHandler(e, "companyName")} id="name"/>
                 </TopArea>
                 <MiddleArea>
                     <label htmlFor="content">{wishData.companyName ? `Why ${wishData.companyName}?` : null}</label>
-                    <AboutCompany required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
+                    <AboutCompany value={wishData.content} required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
                 </MiddleArea>
                 <LabelDiv>
                     <LogoDiv
-                        style={{'backgroundImage': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder2}")`}}/>
+                        style={{'backgroundImage': `url("${wishData.logoUrl || logoPlaceHolder2}")`}}/>
                     <UploadLabel htmlFor="logo">{wishData.logo ? "CHANGE" : "UPLOAD"}</UploadLabel>
                     <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
                 </LabelDiv>
