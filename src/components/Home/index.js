@@ -18,17 +18,13 @@ const InnerPage = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 0 1rem;
-  
-  
 `
 
 const LeftPage = styled.div`
-  //width: 30%;
   display: flex;
 `
 
 const RightPage = styled.div`
-  //width: 70%;
   width: 50%;
 
 `
@@ -44,19 +40,14 @@ const FilterDiv = styled.div`
   align-items: center;
   margin-bottom: 10px;
   label{
-    //font-weight: bold;
     font-size: 1.4rem;
     margin-right: 0.4rem;
   }
 `
 
-const Dropdown = styled.div`
-  
-`
 const DropBtn = styled.button`
-   
-   background-color: ${props => props.theme.fairyGreen};
-   border-radius: 5px;
+  background-color: ${props => props.theme.fairyGreen};
+  border-radius: 5px;
   color: white;
   min-width: 160px;
   padding: 0.7rem 1rem;
@@ -72,7 +63,6 @@ const DropBtn = styled.button`
 `
 
 const DropContent = styled.ul`
-  
   display: ${props => (props.active ? "block;" : "none;")};
   position: absolute;
   background-color: #f1f1f1;
@@ -106,7 +96,7 @@ const Home = ({wishReducer: {wishes}}) => {
         setSortBy(value)
     }
 
-    const dynamicSort = (property) => {
+    const dynamicSort = (property) => { // handles sorting data dynamically by giving it an object property as seen bellow
         let sortOrder = 1;
         if (property[0] === "-") {
             sortOrder = -1;
@@ -124,7 +114,7 @@ const Home = ({wishReducer: {wishes}}) => {
     }
 
 
-    const handleFilterWishes = () => {
+    const handleFilterWishes = () => { // This function handles the filtering and sorting of wish Cards
         let newWishes = wishes
         if (sortBy === "Top") newWishes.sort(dynamicSort("amount_of_hearts"))
         if (sortBy === "New") newWishes.sort(dynamicSort("created"))
@@ -142,11 +132,10 @@ const Home = ({wishReducer: {wishes}}) => {
             }
         });
     }
-    const handleSearch = e => {
+    const handleSearch = e => { // handler for the search bar
         const value = e.currentTarget.value;
         setSearch(value);
     }
-
 
     return (
         <PageContainer>
@@ -159,7 +148,7 @@ const Home = ({wishReducer: {wishes}}) => {
                     <FilterDiv>
                         <label htmlFor="search">Search:</label>
                         <FilterInput onChange={handleSearch} value={search} id="search"/>
-                        <Dropdown>
+                        <div>
                             <DropBtn
                                 onClick={e => setShowDrop(!showDrop)}>{sortBy.length ? sortBy : "Sort by"}</DropBtn>
                             <DropContent active={showDrop}>
@@ -168,7 +157,7 @@ const Home = ({wishReducer: {wishes}}) => {
                                 <li onClick={handleSelect} id="Trending">Trending</li>
                                 <li onClick={handleSelect} id="All">All</li>
                             </DropContent>
-                        </Dropdown>
+                        </div>
                     </FilterDiv>
                     <div>
                         {wishes ? handleFilterWishes() : null}

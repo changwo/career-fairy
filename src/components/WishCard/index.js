@@ -2,24 +2,15 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import {DefaultAvaLarge, DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
-import commentIcon from '../../assets/comment.png'
-import {WishCardContainer} from "../../style/GlobalContainers";
-import Comments from "./Comments";
-import RubberBand from 'react-reveal/RubberBand';
-import Zoom from "react-reveal/Zoom";
 import Fade from "react-reveal/Fade";
+import RubberBand from 'react-reveal/RubberBand';
+import Comments from "./Comments";
+import {rand, smallRand} from "../../sampleData";
+import commentIcon from '../../assets/comment.png'
+import {DefaultAvaLarge, DefaultAvaSmall, WishHeartImg} from "../../style/GlobalImages";
+import {WishCardContainer} from "../../style/GlobalContainers";
 
 const shortid = require("shortid");
-
-const rand = () => {
-    return Math.floor(Math.random() * 100) + 1
-}
-
-const smallRand = () => {
-    return Math.floor(Math.random() * 40) + 1
-}
-
 
 const DefaultDiv = styled.div`
   display: flex;

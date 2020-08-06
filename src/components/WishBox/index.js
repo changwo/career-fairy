@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import logoPlaceHolder from '../../assets/logo-placeholder.png'
-import logoPlaceHolder2 from '../../assets/logo-placeholder2.png'
 import {BaseButton} from "../../style/GlobalButtons";
 import {rand, smallRand} from "../../sampleData";
 import {useDispatch} from "react-redux";
@@ -10,7 +9,6 @@ import {BaseInput} from "../../style/GlobalInputs";
 import Fade from "react-reveal/Fade";
 
 const shortid = require("shortid");
-
 
 const Container = styled.form`
   background-color: white;
@@ -54,9 +52,9 @@ const CreateButton = styled(BaseButton)`
 const MiddleArea = styled(BaseInputArea)`
    height: 120px;
      label {
-    color: #999999;
-    font-size: 20px;
-  }
+       color: #999999;
+       font-size: 20px;
+     }
 `
 
 export const AboutCompany = styled.textarea`
@@ -83,13 +81,13 @@ const LabelDiv = styled.div`
 `
 
 const UploadLabel = styled.label`
-font-size: 1rem;
-color: white;
-text-align: center;
-background-color: ${(props) => props.theme.fairyGreen};
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  background-color: ${(props) => props.theme.fairyGreen};
   width: 100%;
-      border: 1px solid ${props => props.theme.fairyGreen};
-   :hover,:focus{
+  border: 1px solid ${props => props.theme.fairyGreen};
+  :hover,:focus{
     cursor: pointer;
     background-color: white;
     color:${props => props.theme.fairyGreen};
@@ -99,11 +97,8 @@ const LogoDiv = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
-    background-size: contain;
-
-  
+  background-size: contain;
 `
-
 
 const CompInput = styled(BaseInput)`
   padding: 0;
@@ -122,13 +117,13 @@ const WishBox = (props) => {
 
     const submitWish = (e) => {
         e.preventDefault();
-        const newWish = {
+        const newWish = { // Adding additional data for the wish object that will be needed by the WishCard
             id: shortid.generate(),
             name: "Max Voss",
             created: new Date(),
             amount_of_hearts: smallRand(),
             avatar: `https://i.pravatar.cc/150?img=${rand()}`,
-            logo: wishData.logoUrl ? wishData.logoUrl : logoPlaceHolder2,
+            logo: wishData.logoUrl ? wishData.logoUrl : logoPlaceHolder,
             companyName: wishData.companyName,
             content: wishData.content,
             comments: []
@@ -142,12 +137,12 @@ const WishBox = (props) => {
         })
     }
 
-    const onChangeHandler = (event, property) => {
+    const onChangeHandler = (event, property) => { // Dynamic input handler that can be used on multiple input fields
         const value = event.currentTarget.value;
         setWishData({...wishData, [property]: value});
     };
 
-    const logoSelectHandler = e => {
+    const logoSelectHandler = e => { // Uncontrolled handler for selecting images
         if (e.target.files[0]) {
             setWishData(
                 {
@@ -175,7 +170,7 @@ const WishBox = (props) => {
                 </MiddleArea>
                 <LabelDiv>
                     <LogoDiv
-                        style={{'backgroundImage': `url("${wishData.logoUrl || logoPlaceHolder2}")`}}/>
+                        style={{'backgroundImage': `url("${wishData.logoUrl || logoPlaceHolder}")`}}/>
                     <UploadLabel htmlFor="logo">{wishData.logo ? "CHANGE" : "UPLOAD"}</UploadLabel>
                     <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
                 </LabelDiv>

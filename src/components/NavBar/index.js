@@ -28,7 +28,6 @@ const LogoDiv = styled.div`
       color: ${(props) => props.theme.fairyGreen};
       font-size: 40px;
       margin-top: 5px;
-      
     }
 `
 

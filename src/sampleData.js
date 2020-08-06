@@ -16,7 +16,7 @@ export const smallRand = () => {
     return Math.floor(Math.random() * 40) + 1
 }
 
-export const sampleWishes = [
+export const sampleWishes = [ // Sample data used to pre-populate the state
     {
         id: shortid.generate(),
         logo: `https://logo.clearbit.com/ubs.com`,
