@@ -76,6 +76,7 @@ const Input = styled(TextareaAutosize)`
 `
 
 
+
 const Comments = ({comments, handleNewComment, submitComment, content, handleCollapse}) => {
 
     let renderComments = comments.map(comment => {

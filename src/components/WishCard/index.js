@@ -100,7 +100,7 @@ const Animate = styled(RubberBand)`
 
 const WishCard = ({wish: {logo, companyName, name, created, amount_of_hearts, avatar, content, comments}}) => {
     dayjs.extend(relativeTime);
-    const [showComments, setShowComments] = useState(false)
+    const [showComments, setShowComments] = useState(false) // conditional for rendering comments
     const [commentData, setCommentData] = useState(``)
     const [amountOfHearts, setAmountOfHearts] = useState(amount_of_hearts) // Threw this in local state instead of the reducer just for quick manipulations
     const [localComments, setLocalComments] = useState(comments)           // Would normally all be done through the async API calls and redux
