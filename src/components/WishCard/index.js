@@ -131,7 +131,6 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
 
     const submitComment = async (e) => {
         e.preventDefault();
-        console.log("in the submit!")
         const newComment = {
             id: shortid.generate(),
             name: "Max Voss",
@@ -142,7 +141,6 @@ const WishCard = ({wish: {id, logo, companyName, name, created, amount_of_hearts
         }
         const newLocalComments = [...localComments, newComment]
         setLocalComments(newLocalComments)
-        console.log(localComments)
         setCommentData("")
     }
 

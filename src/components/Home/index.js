@@ -181,7 +181,6 @@ const Home = ({wishReducer: {wishes}}) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         wishReducer: state.wishReducer,
     };

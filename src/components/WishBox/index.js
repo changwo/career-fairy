@@ -122,7 +122,6 @@ const WishBox = (props) => {
 
     const submitWish = (e) => {
         e.preventDefault();
-        console.log("in the submit!")
         const newWish = {
             id: shortid.generate(),
             name: "Max Voss",
