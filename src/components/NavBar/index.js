@@ -38,7 +38,6 @@ const Login = styled(BaseButton)`
   background-color: ${(props) => props.theme.fairyGreen};
   color: white;
   font-weight: bold;
-  border: none;
   border-radius: 5px;
 `
 

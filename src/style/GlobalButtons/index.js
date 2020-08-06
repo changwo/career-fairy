@@ -6,9 +6,13 @@ export const BaseButton = styled.button`
   background-color: ${props => props.theme.fairyGreen};
   color: white;
   font-weight: bold;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
+    border: 1px solid ${props => props.theme.fairyGreen};
+    :hover,:focus{
+    background-color: white;
+    color:${props => props.theme.fairyGreen};
+  }
 `
 
 export const BaseLabel = styled.label`

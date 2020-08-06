@@ -77,13 +77,13 @@ const Input = styled(TextareaAutosize)`
 `
 
 
-const Comments = ({comments, handleNewComment, submitComment, content, handleCollapse}) => {
+const Comments = ({comments, handleNewComment, submitComment, content, handleCollapse, showComments}) => {
 
     let renderComments = comments.map(comment => {
 
         return (
             <Fade key={comment.id} collapse>
-                <CommentDiv >
+                <CommentDiv>
                     <HeaderDiv>
                         <AvaNameTimeDiv>
                             <AvatarDiv>
@@ -105,8 +105,11 @@ const Comments = ({comments, handleNewComment, submitComment, content, handleCol
 
 
     return (
-        <CommentsContainer>
+        <CommentsContainer name="COMMENTS">
+
             {renderComments}
+
+
             <InputDiv>
                 <Input onResize={(e) => {
                 }} value={content} onChange={handleNewComment}/>

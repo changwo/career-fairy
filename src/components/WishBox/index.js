@@ -12,7 +12,8 @@ const shortid = require("shortid");
 
 
 const Container = styled.form`
-  background-color: ${(props) => props.theme.fairyGreen};
+  background-color: white;
+  border: 1px solid ${props => props.theme.fairyGreenLight};
   color: white;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05), 0 0 1px 0 rgba(0,0,0,0.2);
   padding: 20px;
@@ -26,6 +27,7 @@ const Container = styled.form`
   
   h1{
     font-size: 25px;
+    color: ${props => props.theme.fairyGreen};
   }
 `
 const BaseInputArea = styled.div`
@@ -53,11 +55,10 @@ const TopArea = styled(BaseInputArea)`
   }
 `
 const CreateButton = styled(BaseButton)`
-  border: 1px solid white;
 `
 
 const MiddleArea = styled(BaseInputArea)`
-   height: 200px;
+   height: 120px;
      label {
     color: #999999;
     font-size: 20px;
@@ -68,36 +69,50 @@ export const AboutCompany = styled.textarea`
   border: none;
   width: 100%;
   height: 100%;
-    background-color: transparent;
-    resize: none;
-    outline: none
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  padding-top: 1rem;
+
   
 `;
 
 const BottomArea = styled.div`
-   height: 100px;
+   height: 200px;
    width: 100%;
-   padding: 10px;
    display: flex;
+   flex-direction: column;
    justify-content: space-between;
    align-items: center;
 `
 
 const LabelDiv = styled.div`
-  height: 58px;
-    padding: 10px 20px;
-  background-color: ${(props) => props.theme.fairyGreen};
+  height: 150px;
+  width: 150px;
+  // border: 1px solid ${(props) => props.theme.fairyGreen};
   color: white;
+  border: 2px solid #bebebe;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid white;
 `
 
 const UploadLabel = styled.label`
-font-size: 20px;
+font-size: 1rem;
+color: white;
+text-align: center;
+cursor: pointer;
+background-color: ${(props) => props.theme.fairyGreen};
+  width: 100%;
+      border: 1px solid ${props => props.theme.fairyGreen};
+    :hover,:focus{
+    background-color: white;
+    color:${props => props.theme.fairyGreen};
+  }
 `
 
 
@@ -160,14 +175,14 @@ const WishBox = (props) => {
                 <AboutCompany required onChange={(e) => onChangeHandler(e, "content")} id="content" rows={15}/>
             </MiddleArea>
             <BottomArea>
-                <LabelDiv>
-                    <Upload src={upload}/>
-                    <UploadLabel htmlFor="logo">{wishData.logo ? "UPLOADED" : "LOGO"}</UploadLabel>
+
+                <LabelDiv  style={{'background-image': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder}")`}}>
+                    <UploadLabel htmlFor="logo">{wishData.logo ? "UPLOADED" : "UPLOAD LOGO"}</UploadLabel>
                     <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
                 </LabelDiv>
                 <div>
                     <CreateButton>
-                        CREATE<br/>WISH
+                        CREATE
                     </CreateButton>
                 </div>
             </BottomArea>
