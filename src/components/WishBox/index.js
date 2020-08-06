@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import logoPlaceHolder from '../../assets/logo-placeholder.png'
+import logoPlaceHolder2 from '../../assets/logo-placeholder2.png'
 import {BaseButton} from "../../style/GlobalButtons";
 import {rand, smallRand} from "../../sampleData";
 import {useDispatch} from "react-redux";
@@ -127,7 +128,7 @@ const WishBox = (props) => {
             created: new Date(),
             amount_of_hearts: smallRand(),
             avatar: `https://i.pravatar.cc/150?img=${rand()}`,
-            logo: wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder,
+            logo: wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder2,
             companyName: wishData.companyName,
             content: wishData.content,
             comments: []
@@ -165,7 +166,7 @@ const WishBox = (props) => {
                 </MiddleArea>
                 <LabelDiv>
                     <LogoDiv
-                        style={{'backgroundImage': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder}")`}}/>
+                        style={{'backgroundImage': `url("${wishData.logo ? URL.createObjectURL(wishData.logo) : logoPlaceHolder2}")`}}/>
                     <UploadLabel htmlFor="logo">{wishData.logo ? "CHANGE" : "UPLOAD"}</UploadLabel>
                     <FileInput onChange={logoSelectHandler} type="file" id="logo"/>
                 </LabelDiv>
